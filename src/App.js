@@ -8,7 +8,7 @@ import StartPage from "./pages/StartPage";
 import { ProductContext } from "./context/ProductContext";
 
 function App() {
-  let [products, setProducts] = useState({});
+  let [products, setProducts] = useState([]);
 
   return (
     <>
