@@ -1,18 +1,41 @@
-import React from "react"
-import "./App.css"
+import React, { useState, useEffect }  from "react";
+import { Switch, Route } from "react-router-dom";
+import "./App.css";
+import BaseLayout from "./components/BaseLayout";
+import Hero from "./components/Hero";
+import DetailedPage from "./pages/DetailedPage";
+import StartPage from "./pages/StartPage";
+import { ProductContext } from "./context/ProductContext";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hej grupp 3</h1>
-      <h2>Hej Hej</h2>
 
-      <h3>Hej Sofia</h3>
-      <h3>Hej Vanessa</h3>
-      <h3>Hej / Ludvig</h3>
-      <h3>Hej igen från vanessa</h3>
-    </div>
-  )
+  let [products, setProducts] = useState({});
+
+  return (
+    <>
+      <Switch>
+        <ProductContext.Provider value={{products, setProducts}}>
+          <Route path="/cart">
+            {/* <CartPage /> */}
+          </Route>
+
+          <Route path="/checkout">
+            {/* <CheckOut /> */}
+          </Route>
+
+          <Route path="/product">
+            {/* <DetailedPage /> */}
+          </Route>
+
+          <Route path="/">
+          <BaseLayout>
+            <StartPage />
+            </BaseLayout>
+          </Route>
+        </ProductContext.Provider>
+      </Switch>
+    </>
+  );
 }
 
-export default App
+export default App;
