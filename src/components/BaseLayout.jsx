@@ -1,13 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-<<<<<<< HEAD
 import logo from "../images/grupp3_logo2.svg"
 import cart from "../images/cart_image.svg"
 import { Link } from "react-router-dom"
-=======
-// import logo from "../images/grupp3_logo2.svg"
-// import cart from "../images/cart_image.svg"
->>>>>>> 0ef6a30177f75d21aaeb2c9fb934feeeeba5a872
 
 const OurHeader = styled.header`
   width: 100%;
