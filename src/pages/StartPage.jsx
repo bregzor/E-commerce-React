@@ -15,7 +15,6 @@ export default function StartPage() {
 		.then(res => res.json())
 		.then(data => {
 			setProducts(data["products"]);
-			console.log(Object.entries(data["products"]));
 		});
 	}
 
