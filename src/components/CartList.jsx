@@ -40,9 +40,9 @@ export default function CartList() {
     );
   };
 
-  // useEffect(() => {
-  //   getAllCartItems();
-  // }, []);
+  useEffect(() => {
+    getAllCartItems();
+  }, []);
 
   return (
     <div>

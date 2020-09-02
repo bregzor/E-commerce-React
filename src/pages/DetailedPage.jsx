@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { ProductContext } from '../context/ProductContext';
 import styled from 'styled-components';
 import AddToCartButton from '../components/AddToCartButton'
+import CartList from '../components/CartList'
 
 const Wrapper = styled.div`
 display:flex;
@@ -120,6 +121,7 @@ export default function DetailedPage(props) {
 				</QtyAndPrice>
 			</DivBox>
 		</Wrapper>
+		<CartList />
 		</>
 	)
 }
