@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import logo from "../images/grupp3_logo2.svg"
-import cart from "../images/cart_image.svg"
+// import logo from "../images/grupp3_logo2.svg"
+// import cart from "../images/cart_image.svg"
 
 const OurHeader = styled.header`
   width: 100%;
@@ -64,12 +64,12 @@ export default function BaseLayout({ children }) {
   return (
     <>
       <OurHeader>
-        <LogoImgHeader src={logo} />
-        <CartImg src={cart} />
+        {/* <LogoImgHeader src={logo} /> */}
+        {/* <CartImg src={cart} /> */}
       </OurHeader>
       <OurMain>{children}</OurMain>
       <OurFooter>
-        <LogoImgFooter src={logo} />
+        {/* <LogoImgFooter src={logo} /> */}
 
         <NamesList>
           <NamesListItem>Vanessa Suthat</NamesListItem>
