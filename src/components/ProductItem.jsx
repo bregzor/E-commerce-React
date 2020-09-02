@@ -1,34 +1,78 @@
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
+import AddToCartButton from "./AddToCartButton";
+import { Link } from "react-router-dom";
 
 const ProductArticle = styled.article`
-  min-width: 300px;
-  max-width:350px;
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  max-width: 350px;
   border-radius: 15px;
   background: gray;
-  margin:20px;
+  margin: 20px;
+  color: white;
+  transition:border 500ms ease-in;
+  border:0;
+  &:hover{
+	  transition:border 500ms ease-in;
+	  border:1px solid orange;
+  }
 `;
 
 const ProductImgWrapper = styled.div`
-  width: 250px;
+  width: 100%;
   height: 250px;
   object-fit: contain;
+  overflow: hidden;
+  position: relative;
+  top: -10px;
 `;
 
-const ProductInfoContainer = styled.div``;
+const ProductName = styled.h3`
+  text-transform: uppercase;
+`;
 
-export default function ProductItem({name, img, desc, price}) {
+const ProductInfoContainer = styled.div`
+  padding: 20px;
+`;
+
+const ProductPrice = styled.p`
+	font-weight:bold;
+	font-size:24px;
+	text-align:right;
+`
+
+export default function ProductItem({ name, img, desc, price, id }) {
+ 
+	const addItemToLocalStorage = () => {
+    localStorage.setItem(
+      `product_${id}`,
+      JSON.stringify({ name: name, img: img, price: price })
+	);
+		getAllCartItems();
+  };
+
+  const getAllCartItems = () => {
+	 	for (let i = 0; i < localStorage.length; i++) {
+			 const product = localStorage.getItem(localStorage.key(i));
+			 console.log(product);
+		 }	
+  }
+
   return (
-	
     <ProductArticle>
-      <ProductImgWrapper>
-        <img width="100%" src={img} />
-      </ProductImgWrapper>
+      <AddToCartButton onClick={addItemToLocalStorage} />
+      <Link to={`/product/${id}`}>
+        <ProductImgWrapper>
+          <img width="100%" src={img} />
+        </ProductImgWrapper>
+      </Link>
       <ProductInfoContainer>
-		  <h3>{name}</h3>
-		  <p>{desc}</p>
-		  <label>{price} SEK</label>
-	  </ProductInfoContainer>
+        <ProductName>{name}</ProductName>
+        <p>{desc}</p>
+        <ProductPrice>{price} SEK</ProductPrice>
+      </ProductInfoContainer>
     </ProductArticle>
   );
 }

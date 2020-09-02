@@ -19,15 +19,14 @@ export default function ProductList() {
 		const id = item[0];
 		const product = item[1];
 	    return (
-          <Link to={`/product/${id}`}>
             <ProductItem
               key={index}
+			  id = {id}
               name={product.name}
               desc={product.description}
               price={product.price}
               img={product.images[0].src.small}
             />
-          </Link>
         );
       })}
 	  </ProductsWrapper>
