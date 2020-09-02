@@ -13,24 +13,32 @@ const OurHeader = styled.header`
 
 const OurMain = styled.main`
   background: lightgray;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex;
 `
 const OurFooter = styled.footer`
-  background: black;
-  height: 15px;
-  position: fixed;
-  bottom: 0;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  background: #1a1b1d;
+  height: 300px;
+
   width: 100%;
 `
 
-const LogoImg = styled.img`
+const LogoImgHeader = styled.img`
   margin: 0;
   padding-left: 20px;
   height: 80px;
   width: 90px;
+`
+const LogoImgFooter = styled.img`
+  margin: 0;
+  height: 150px;
+  width: 150px;
 `
 
 const CartImg = styled.img`
@@ -41,16 +49,35 @@ const CartImg = styled.img`
   width: 60px;
 `
 
+const NamesList = styled.ul`
+  font-size: 16px;
+  list-style: none;
+  text-align: center;
+  color: white;
+`
+
+const NamesListItem = styled.li`
+  padding: 2px;
+`
+
 export default function BaseLayout({ children }) {
   return (
     <>
       <OurHeader>
-        <LogoImg src={logo} />
+        <LogoImgHeader src={logo} />
         <CartImg src={cart} />
       </OurHeader>
       <OurMain>{children}</OurMain>
       <OurFooter>
-        <h4>Created by Group 3</h4>
+        <LogoImgFooter src={logo} />
+
+        <NamesList>
+          <NamesListItem>Vanessa Suthat</NamesListItem>
+          <NamesListItem>Ludvig Dahlstedt</NamesListItem>
+          <NamesListItem>Sofia Khan</NamesListItem>
+          <NamesListItem>Christopher Berge</NamesListItem>
+          <NamesListItem>Martin Axelsson</NamesListItem>
+        </NamesList>
       </OurFooter>
     </>
   )
