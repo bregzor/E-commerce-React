@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { ProductContext } from "../context/ProductContext.js";
+import CartItem from './CartItem';
 
 const Cart = styled.section`
   background: green;
@@ -8,8 +9,9 @@ const Cart = styled.section`
   position: absolute;
   border-radius: 3px;
   padding: 20px;
-  right: 0px;
+  right: ${props => props.position || "0px"};
   top: 60px;
+  z-index:20;
 `;
 const ImgSize = styled.img`
   width: 150px;
@@ -19,6 +21,7 @@ const ImgSize = styled.img`
 
 export default function CartList() {
   const [cartItems, setCartItems] = useState([]);
+  const {toggle} = useContext(ProductContext);
 
   const getAllCartItems = () => {
     const AllProducts = [];
@@ -40,17 +43,23 @@ export default function CartList() {
     );
   };
 
-  // useEffect(() => {
-  //   getAllCartItems();
-  // }, []);
+  useEffect(() => {
+    getAllCartItems();
+  }, []);
 
   return (
     <div>
-      <Cart>
+      <Cart position={toggle}>
         <h1>CartList</h1>
         {cartItems.map((product, index) => {
-          return renderItem(product);
-          //<
+          return (
+            <CartItem
+              key = { index }
+              name={product.name}
+              price={product.price}
+              img={product.img}
+            />
+          );
         })}
       </Cart>
     </div>

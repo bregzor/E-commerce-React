@@ -44,14 +44,6 @@ const ProductPrice = styled.p`
 `
 
 export default function ProductItem({ name, img, desc, price, id }) {
- 
-	// const addItemToLocalStorage = () => {
-  //   localStorage.setItem(
-  //     `product_${id}`,
-  //     JSON.stringify()
-	//   );
-  // };
-
 
   return (
     <ProductArticle>
