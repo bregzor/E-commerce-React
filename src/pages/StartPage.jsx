@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext }  from "react";
-import ProductList from "../components/ProductList";
-import Hero from "../components/Hero";
-import { ProductContext } from '../context/ProductContext';
-import { Link } from 'react-router-dom';
-
+import React, { useState, useEffect, useContext } from "react"
+import ProductList from "../components/ProductList"
+import Hero from "../components/Hero"
+import { ProductContext } from "../context/ProductContext"
+import { Link } from "react-router-dom"
+import CartList from "../components/CartList"
 
 export default function StartPage() {
-
 
 	const {products ,setProducts} = useContext(ProductContext);
 
@@ -22,8 +21,11 @@ export default function StartPage() {
 		fetchProducts();
 	}, [])
 
-  return <>
-	<Hero/>
-	<ProductList/>
-  </>;
+  return (
+    <>
+      <Hero />
+      <ProductList />
+      <CartList />
+    </>
+  )
 }

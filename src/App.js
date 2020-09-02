@@ -11,6 +11,7 @@ function App() {
 
   let [products, setProducts] = useState([]);
   let [product, setProduct] = useState([]);
+  let [toggle, setToggle] = useState(false);
 
   return (
     <>
