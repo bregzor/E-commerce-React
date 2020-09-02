@@ -15,7 +15,7 @@ export default function StartPage() {
 		.then(res => res.json())
 		.then(data => {
 			setProducts(data["products"]);
-			console.log(data["products"]);
+			console.log(Object.entries(data["products"]));
 		});
 	}
 
@@ -26,6 +26,5 @@ export default function StartPage() {
   return <>
 	<Hero/>
 	<ProductList/>
-	<Link to="/product/16065">Till produkten!</Link>
   </>;
 }

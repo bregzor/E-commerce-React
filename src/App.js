@@ -8,14 +8,15 @@ import StartPage from "./pages/StartPage";
 import { ProductContext } from "./context/ProductContext";
 
 function App() {
+
   let [products, setProducts] = useState([]);
+  let [product, setProduct] = useState([]);
 
   return (
     <>
-      <Switch>
-        <ProductContext.Provider value={{ products, setProducts }}>
+      <ProductContext.Provider value={{ products, setProducts, product, setProduct }}>
+        <Switch>
           <Route path="/cart">{/* <CartPage /> */}</Route>
-
           <Route path="/checkout">{/* <CheckOut /> */}</Route>
 
           <Route
@@ -34,8 +35,8 @@ function App() {
               <StartPage />
             </BaseLayout>
           </Route>
-        </ProductContext.Provider>
-      </Switch>
+        </Switch>
+      </ProductContext.Provider>
     </>
   );
 }
