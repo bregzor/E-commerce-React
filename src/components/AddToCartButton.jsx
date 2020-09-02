@@ -16,8 +16,16 @@ const Cartbutton = styled.button `
 	position:
 `
 
-export default function AddToCartButton({size, position, onClick}) {
+export default function AddToCartButton({ id, data, size, position}) {
+
+	const addItemToLocalStorage = () => {
+    localStorage.setItem(
+      `product_${id}`,
+      JSON.stringify(data)
+	  );
+	};
+	
   return (
-	<Cartbutton onClick={onClick}>+</Cartbutton>
+	<Cartbutton onClick={addItemToLocalStorage}>+</Cartbutton>
   )
 }
