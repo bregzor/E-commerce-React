@@ -5,6 +5,7 @@ import BaseLayout from "./components/BaseLayout";
 import Hero from "./components/Hero";
 import DetailedPage from "./pages/DetailedPage";
 import StartPage from "./pages/StartPage";
+import CheckOut from "./components/CheckOut";
 import { ProductContext } from "./context/ProductContext";
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
       <ProductContext.Provider value={{ products, setProducts, product, setProduct }}>
         <Switch>
           <Route path="/cart">{/* <CartPage /> */}</Route>
-          <Route path="/checkout">{/* <CheckOut /> */}</Route>
+          <Route path="/checkout">{<CheckOut />}</Route>
 
           <Route
             path="/product/:id"
