@@ -44,24 +44,16 @@ const ProductPrice = styled.p`
 `
 
 export default function ProductItem({ name, img, desc, price, id }) {
-  const addItemToLocalStorage = () => {
-    localStorage.setItem(
-      `product_${id}`,
-      JSON.stringify({ name: name, img: img, price: price })
-    )
-    getAllCartItems()
-  }
-
-  const getAllCartItems = () => {
-    for (let i = 0; i < localStorage.length; i++) {
-      const product = localStorage.getItem(localStorage.key(i))
-      console.log(product)
-    }
-  }
+  // const addItemToLocalStorage = () => {
+  //   localStorage.setItem(
+  //     `product_${id}`,
+  //     JSON.stringify()
+  //   );
+  // };
 
   return (
     <ProductArticle>
-      <AddToCartButton onClick={addItemToLocalStorage} />
+      <AddToCartButton data={{ name: name, img: img, price: price }} id={id} />
       <Link to={`/product/${id}`}>
         <ProductImgWrapper>
           <img width="100%" src={img} />

@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { ProductContext } from "../context/ProductContext.js"
+import { Link } from "react-router-dom"
 
 const Cart = styled.section`
   background: green;
@@ -17,8 +18,13 @@ const ImgSize = styled.img`
   object-fit: cover;
 `
 
+const CheckoutBtn = styled.button`
+  width: 150px;
+  height: 40px;
+`
+
 export default function CartList() {
-  const [cartItem, setCartItem] = useState([])
+  const [cartItems, setCartItems] = useState([])
 
   const getAllCartItems = () => {
     const AllProducts = []
@@ -27,7 +33,7 @@ export default function CartList() {
       const product = JSON.parse(localStorage.getItem(localStorage.key(i)))
       AllProducts.push(product)
     }
-    setCartItem(AllProducts)
+    setCartItems(AllProducts)
   }
 
   const renderItem = product => {
@@ -40,17 +46,21 @@ export default function CartList() {
     )
   }
 
-  useEffect(() => {
-    getAllCartItems()
-  }, [])
+  //   useEffect(() => {
+  //     getAllCartItems();
+  //   }, []);
 
   return (
     <div>
       <Cart>
         <h1>CartList</h1>
-        {cartItem.map((product, index) => {
+        {cartItems.map((product, index) => {
           return renderItem(product)
+          //<
         })}
+        <Link to={`/CheckOut/`}>
+          <CheckoutBtn>Checkout</CheckoutBtn>
+        </Link>
       </Cart>
     </div>
   )

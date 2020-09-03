@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function CheckOut() {
+export default function Reviews() {
 	return (
 		<div>
-		
+			
 		</div>
 	)
 }
