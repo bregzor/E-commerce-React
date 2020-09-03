@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 import { ProductContext } from '../context/ProductContext';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import AddToCartButton from '../components/AddToCartButton'
 import CartList from '../components/CartList'
-import { Link } from "react-router-dom";
+import RatingStars from '../components/RatingStars';
 
 
 const Main = styled.main`
@@ -12,8 +13,6 @@ height: 90vh;
 display: flex;
 justify-content:center;
 `
-import RatingStars from '../components/RatingStars';
-
 
 const Wrapper = styled.div`
 display:flex;

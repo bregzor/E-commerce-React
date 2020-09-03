@@ -17,7 +17,6 @@ text-align:center;
 margin: 3% 0;
 `
 
-
 export default function Reviews(props) {
 
 	const id = props.match.params.id;

@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useContext } from "react"
-import styled from "styled-components"
-import { ProductContext } from "../context/ProductContext.js"
-import CartItem from "./CartItem"
 import { Link } from "react-router-dom"
+import { ProductContext } from "../context/ProductContext.js"
+import styled from "styled-components"
+import CartItem from "./CartItem"
+import TotalSum from './TotalSum';
+
 
 const Cart = styled.section`
   background: white;
   opacity: 0.9;
   width: 320px;
-  position: absolute;
+  position: fixed;
   border-radius: 3px;
   padding: 20px;
   right: ${props => props.position || "0px"};
@@ -16,6 +18,7 @@ const Cart = styled.section`
   top: 60px;
   z-index: 20;
   height: 100%;
+
 `
 const ImgSize = styled.img`
   width: 150px;
@@ -27,6 +30,7 @@ const CheckoutBtn = styled.button`
   width: 150px;
   height: 40px;
 `
+
 
 export default function CartList() {
   const [cartItems, setCartItems] = useState([])
@@ -44,7 +48,7 @@ export default function CartList() {
 
   useEffect(() => {
     getAllCartItems()
-  }, [])
+  }, [toggle])
 
   return (
     <div>
@@ -64,6 +68,8 @@ export default function CartList() {
         <Link to={`/CheckOut/`}>
           <CheckoutBtn>Checkout</CheckoutBtn>
         </Link>
+        <CheckoutBtn onClick={ (e) => localStorage.clear()}>Clear All</CheckoutBtn>
+        <TotalSum/>
       </Cart>
     </div>
   )
