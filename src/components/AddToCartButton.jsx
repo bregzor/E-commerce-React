@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from 'styled-components';
+import { ProductContext } from '../context/ProductContext';
 
 const Cartbutton = styled.button `
 	width:35px;
@@ -16,13 +17,16 @@ const Cartbutton = styled.button `
 	position:
 `
 
-export default function AddToCartButton({ id, data, size, position}) {
+export default function AddToCartButton({ id, data}) {
+
+	const {lsRender,setlsRender} = useContext(ProductContext);
 
 	const addItemToLocalStorage = () => {
     localStorage.setItem(
       `product_${id}`,
       JSON.stringify(data)
 	  );
+	  setlsRender(lsRender + 1);
 	};
 	
   return (

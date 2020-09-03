@@ -34,7 +34,7 @@ const CheckoutBtn = styled.button`
 
 export default function CartList() {
   const [cartItems, setCartItems] = useState([])
-  const { toggle } = useContext(ProductContext)
+  const { toggle, lsRender } = useContext(ProductContext)
 
   const getAllCartItems = () => {
     const AllProducts = []
@@ -48,7 +48,7 @@ export default function CartList() {
 
   useEffect(() => {
     getAllCartItems()
-  }, [toggle])
+  }, [lsRender])
 
   return (
     <div>
@@ -59,8 +59,11 @@ export default function CartList() {
             <CartItem
               name={product.name}
               price={product.price}
+              id={product.id}
+              quantity={product.quantity}
               img={product.img}
               key={index}
+              render = { getAllCartItems }
             />
           )
           //<

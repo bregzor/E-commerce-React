@@ -1,10 +1,10 @@
-import React, { useState } from "react"
-import styled from "styled-components"
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import {
   IoIosAddCircleOutline,
   IoIosRemoveCircleOutline,
-  IoMdTrash
-} from "react-icons/io"
+  IoMdTrash,
+} from "react-icons/io";
 
 const CartItemContainer = styled.div`
   background: white;
@@ -12,72 +12,74 @@ const CartItemContainer = styled.div`
   border-bottom: 1px solid red;
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
-  padding:20px;
+  justify-content: space-between;
+  padding: 20px;
 `;
 
 const CartName = styled.p`
   font-size: 13px;
-`
+`;
 const CartPrice = styled.p`
   font-size: 13px;
   white-space: nowrap;
-`
+`;
 const CartImg = styled.img`
   width: 60px;
-`
+`;
 
 const Stepper = styled.input`
   width: 30px;
   height: 20px;
-`
+`;
 
 const CartButtonContainer = styled.div`
   width: 100%;
   display: flex;
   height: 50px;
   background: black;
-`
+`;
 
 const AddReduce = styled.p`
   padding: 5px;
-`
+`;
 
-export default function CartItem({ name, price, img }) {
-  let [count, setCount] = useState(1)
+export default function CartItem({ name, price, img, quantity, id, render }) {
+  let [count, setCount] = useState(1);
+
   function add() {
-    console.log("click")
-
-    setCount(count + 1)
+    let qt = parseInt(quantity);
+    count < qt ? setCount(count + 1) : console.log(parseInt(quantity));
   }
+
   function remove() {
-    console.log("tar bort 1")
-    setCount(count - 1)
+    setCount(count - 1);
     if (count <= 0) {
-      deleteItem()
+      deleteItem();
     }
   }
 
   function deleteItem() {
-    console.log("deleted item")
+    console.log("deleted item: "  + id);
+    localStorage.removeItem(`product_${id}`);
+    render();
   }
+
+
   return (
     <>
-    <CartItemContainer>
-      <CartImg src={img} />
-      <CartName>{name}</CartName>
-      <CartPrice>{price} SEK</CartPrice>
-      <AddReduce>
-        <IoIosAddCircleOutline onClick={add} />
-      </AddReduce>
-      <Stepper type="number" value={count} />
-      <AddReduce>
-        <IoIosRemoveCircleOutline onClick={remove} />
-      </AddReduce>
-      <button>
-        <IoMdTrash />
-      </button>
-    </CartItemContainer>
+      <CartItemContainer>
+        <CartImg src={img} />
+        <CartName>{name}</CartName>
+        <CartPrice>{price} SEK</CartPrice>
+        <AddReduce>
+          <IoIosAddCircleOutline onClick={add} />
+        </AddReduce>
+        <Stepper type="number" value={count} />
+        <AddReduce>
+          <IoIosRemoveCircleOutline onClick={remove} />
+        </AddReduce>
+          <IoMdTrash onClick={deleteItem} />
+      </CartItemContainer>
     </>
-  )
+  );
 }

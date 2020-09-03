@@ -25,6 +25,7 @@ export default function ProductList() {
           <ProductItem
             key={index}
             id={id}
+            quantity={product.stock}
             name={product.name}
             desc={product.description}
             price={product.price}

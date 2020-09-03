@@ -15,10 +15,11 @@ function App() {
   let [product, setProduct] = useState([]);
   let [toggle, setToggle] = useState("-370px");
   let [reviews, setReviews] = useState([]);
+  let [lsRender, setlsRender] = useState(0);
 
   return (
     <>
-      <ProductContext.Provider value={{ products, setProducts, product, setProduct, toggle, setToggle, reviews, setReviews }}>
+      <ProductContext.Provider value={{ products, setProducts, product, setProduct, toggle, setToggle, reviews, setReviews, lsRender, setlsRender }}>
         <Switch>
           <Route path="/cart">{/* <CartPage /> */}</Route>
           <Route path="/checkout">{<CheckOut />}</Route>
