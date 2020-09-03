@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { ProductContext } from "../context/ProductContext.js";
+import React, { useEffect, useState } from "react"
+import styled from "styled-components"
+import { ProductContext } from "../context/ProductContext.js"
+import { Link } from "react-router-dom"
 
 const Cart = styled.section`
   background: green;
@@ -10,25 +11,30 @@ const Cart = styled.section`
   padding: 20px;
   right: 0px;
   top: 60px;
-`;
+`
 const ImgSize = styled.img`
   width: 150px;
   heigth: auto;
   object-fit: cover;
-`;
+`
+
+const CheckoutBtn = styled.button`
+  width: 150px;
+  height: 40px;
+`
 
 export default function CartList() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([])
 
   const getAllCartItems = () => {
-    const AllProducts = [];
+    const AllProducts = []
     for (let i = 0; i < localStorage.length; i++) {
       //check if product later
-      const product = JSON.parse(localStorage.getItem(localStorage.key(i)));
-      AllProducts.push(product);
+      const product = JSON.parse(localStorage.getItem(localStorage.key(i)))
+      AllProducts.push(product)
     }
-    setCartItems(AllProducts);
-  };
+    setCartItems(AllProducts)
+  }
 
   const renderItem = (product) => {
     return (
@@ -37,8 +43,8 @@ export default function CartList() {
         <p>name {product.name}</p>
         <p>pris {product.price} </p>
       </div>
-    );
-  };
+    )
+  }
 
   useEffect(() => {
     getAllCartItems();
@@ -49,10 +55,13 @@ export default function CartList() {
       <Cart>
         <h1>CartList</h1>
         {cartItems.map((product, index) => {
-          return renderItem(product);
+          return renderItem(product)
           //<
         })}
+        <Link to={`/CheckOut/`}>
+          <CheckoutBtn>Checkout</CheckoutBtn>
+        </Link>
       </Cart>
     </div>
-  );
+  )
 }

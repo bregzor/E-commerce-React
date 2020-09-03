@@ -1,7 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-// import logo from "../images/grupp3_logo2.svg"
-// import cart from "../images/cart_image.svg"
+import logo from "../images/grupp3_logo2.svg"
+import cart from "../images/cart_image.svg"
+import { Link } from "react-router-dom"
 
 const OurHeader = styled.header`
   width: 100%;
@@ -20,12 +21,10 @@ const OurMain = styled.main`
 `
 const OurFooter = styled.footer`
   display: flex;
-
   align-items: center;
   flex-direction: column;
   background: #1a1b1d;
   height: 300px;
-
   width: 100%;
 `
 
@@ -64,13 +63,17 @@ export default function BaseLayout({ children }) {
   return (
     <>
       <OurHeader>
-        {/* <LogoImgHeader src={logo} /> */}
-        {/* <CartImg src={cart} /> */}
+        <Link to="/">
+          <LogoImgHeader src={logo} />
+        </Link>
+
+        <CartImg src={cart} />
       </OurHeader>
       <OurMain>{children}</OurMain>
       <OurFooter>
-        {/* <LogoImgFooter src={logo} /> */}
-
+        <Link to="/">
+          <LogoImgFooter src={logo} />
+        </Link>
         <NamesList>
           <NamesListItem>Vanessa Suthat</NamesListItem>
           <NamesListItem>Ludvig Dahlstedt</NamesListItem>
