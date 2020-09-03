@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import logo from "../images/grupp3_logo2.svg"
 import cart from "../images/cart_image.svg"
 import { Link } from "react-router-dom"
+import { ProductContext } from '../context/ProductContext';
 
 const OurHeader = styled.header`
   width: 100%;
@@ -46,6 +47,7 @@ const CartImg = styled.img`
   padding: 10px 20px 0px 10px;
   height: 60px;
   width: 60px;
+  cursor:pointer;
 `
 
 const NamesList = styled.ul`
@@ -60,14 +62,22 @@ const NamesListItem = styled.li`
 `
 
 export default function BaseLayout({ children }) {
+
+
+  const {toggle, setToggle} = useContext(ProductContext);
+
+
+  const toggleMenu = () => {
+    setToggle("0px");
+  }
+
   return (
     <>
       <OurHeader>
         <Link to="/">
-          <LogoImgHeader src={logo} />
+          <LogoImgHeader src={logo}  />
         </Link>
-
-        <CartImg src={cart} />
+        <CartImg src={cart} onClick={toggleMenu} />
       </OurHeader>
       <OurMain>{children}</OurMain>
       <OurFooter>

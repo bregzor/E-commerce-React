@@ -12,6 +12,8 @@ height: 90vh;
 display: flex;
 justify-content:center;
 `
+import RatingStars from '../components/RatingStars';
+
 
 const Wrapper = styled.div`
 display:flex;
@@ -145,7 +147,7 @@ export default function DetailedPage(props) {
 					<Paragraph>Rating: {product.rating}</Paragraph>
 					<AddToCartButton data={{name: product.name , img: product.images, price: product.price}}/>
 				</RatingAndAddBox>
-
+				<RatingStars rating={ product.rating }/>
 				<Title>{product.name}</Title>
 				<Description>Description: {product.description}</Description>
 				

@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import styled from "styled-components"
 import { ProductContext } from "../context/ProductContext.js"
+import CartItem from "./CartItem"
 import { Link } from "react-router-dom"
 
 const Cart = styled.section`
-  background: green;
+  background: white;
+  opacity: 0.9;
   width: 320px;
   position: absolute;
   border-radius: 3px;
   padding: 20px;
-  right: 0px;
+  right: ${props => props.position || "0px"};
+  transition: all 250ms ease-in;
   top: 60px;
+  z-index: 20;
+  height: 100%;
 `
 const ImgSize = styled.img`
   width: 150px;
-  heigth: auto;
+  height: auto;
   object-fit: cover;
 `
 
@@ -25,6 +30,7 @@ const CheckoutBtn = styled.button`
 
 export default function CartList() {
   const [cartItems, setCartItems] = useState([])
+  const { toggle } = useContext(ProductContext)
 
   const getAllCartItems = () => {
     const AllProducts = []
@@ -36,26 +42,23 @@ export default function CartList() {
     setCartItems(AllProducts)
   }
 
-  const renderItem = (product) => {
-    return (
-      <div>
-        <ImgSize src={product.img} />
-        <p>name {product.name}</p>
-        <p>pris {product.price} </p>
-      </div>
-    )
-  }
-
   useEffect(() => {
-    getAllCartItems();
-  }, []);
+    getAllCartItems()
+  }, [])
 
   return (
     <div>
-      <Cart>
+      <Cart position={toggle}>
         <h1>CartList</h1>
         {cartItems.map((product, index) => {
-          return renderItem(product)
+          return (
+            <CartItem
+              name={product.name}
+              price={product.price}
+              img={product.img}
+              key={index}
+            />
+          )
           //<
         })}
         <Link to={`/CheckOut/`}>
