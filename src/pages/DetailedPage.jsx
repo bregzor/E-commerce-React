@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react'
 import { ProductContext } from '../context/ProductContext';
 import styled from 'styled-components';
 import AddToCartButton from '../components/AddToCartButton'
+import RatingStars from '../components/RatingStars';
+
 
 const Wrapper = styled.div`
 display:flex;
@@ -111,7 +113,7 @@ export default function DetailedPage(props) {
 					<Paragraph>Rating: {product.rating}</Paragraph>
 					<AddToCartButton data={{name: product.name , img: product.images, price: product.price}}/>
 				</RatingAndAddBox>
-
+				<RatingStars rating={ product.rating }/>
 				<Title>{product.name}</Title>
 				<Description>Description: {product.description}</Description>
 				<QtyAndPrice>

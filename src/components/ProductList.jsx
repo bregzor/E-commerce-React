@@ -16,7 +16,9 @@ export default function ProductList() {
   
   return (
     <ProductsWrapper>
-      {Object.entries(products).map((item, index) => {
+      {
+        
+        Object.entries(products).map((item, index) => {
         const id = item[0];
         const product = item[1];
         return (
