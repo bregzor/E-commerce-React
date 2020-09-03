@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from "react"
+import styled from "styled-components"
 
 const CartItemContainer = styled.div`
   background: gray;
@@ -7,25 +7,25 @@ const CartItemContainer = styled.div`
   border-bottom: 1px solid red;
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
-`;
+  justify-content: space-between;
+`
 
-const CartName = styled.h4``;
-const CartPrice = styled.p``;
+const CartName = styled.h4``
+const CartPrice = styled.p``
 const CartImg = styled.img`
-width: 60px;
-`;
+  width: 60px;
+`
 
 const Stepper = styled.input`
-width:30px;
-height:20px;
+  width: 30px;
+  height: 20px;
 `
 
 const CartButtonContainer = styled.div`
-	width:100%;
-	display:flex;
-	height:50px;
-	background:black;
+  width: 100%;
+  display: flex;
+  height: 50px;
+  background: black;
 `
 
 export default function CartItem({ name, price, img }) {
@@ -35,8 +35,8 @@ export default function CartItem({ name, price, img }) {
       <CartName>{name}</CartName>
       <CartPrice>{price}</CartPrice>
 
-	  <Stepper type="number"/>
-	  <button>X</button>
+      <Stepper type="number" />
+      <button>X</button>
     </CartItemContainer>
-  );
+  )
 }

@@ -13,7 +13,7 @@ const Cart = styled.section`
   padding: 20px;
   right: ${props => props.position || "0px"};
   transition: all 250ms ease-in;
-  top: 60px;
+  top: 80px;
   z-index: 20;
   height: 100%;
 `
