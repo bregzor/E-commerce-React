@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import styled from "styled-components"
 import { ProductContext } from "../context/ProductContext.js"
 
@@ -9,48 +9,49 @@ const Cart = styled.section`
   border-radius: 3px;
   padding: 20px;
   right: 0px;
-  top: 60px;
+  top: 80px;
 `
 const ImgSize = styled.img`
   width: 150px;
-  heigth: auto;
+  height: auto;
   object-fit: cover;
 `
 
 export default function CartList() {
-  const { products, setProducts } = useContext(ProductContext)
-  console.log("products: ", products)
-  console.log("Object.entries: ", Object.entries(products))
+  const [cartItem, setCartItem] = useState([])
 
   const getAllCartItems = () => {
+    const AllProducts = []
     for (let i = 0; i < localStorage.length; i++) {
-      const product = localStorage.getItem(localStorage.key(i))
-      return (
-        <>
-          <ImgSize src={products.img.src} />
-          <p>name {products.name}</p>
-          <p>pris {products.price} </p>
-        </>
-      )
-
-      console.log(product)
+      //check if product later
+      const product = JSON.parse(localStorage.getItem(localStorage.key(i)))
+      AllProducts.push(product)
     }
+    setCartItem(AllProducts)
   }
+
+  const renderItem = product => {
+    return (
+      <div>
+        <ImgSize src={product.img} />
+        <p>name {product.name}</p>
+        <p>pris {product.price} </p>
+      </div>
+    )
+  }
+
+  useEffect(() => {
+    getAllCartItems()
+  }, [])
 
   return (
     <div>
       <Cart>
         <h1>CartList</h1>
-        {getAllCartItems}
+        {cartItem.map((product, index) => {
+          return renderItem(product)
+        })}
       </Cart>
     </div>
   )
 }
-
-// <div key={index}>
-// <ImgSize src={item[1].images[0].src.small} />
-
-// <p>item {item[0]}</p>
-// <p>name {item[1].name}</p>
-// <p>pris {item[1].price} </p>
-// </div>
