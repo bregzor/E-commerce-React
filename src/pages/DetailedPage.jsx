@@ -22,23 +22,33 @@ justify-content: center;
 justify-self: center;
 align-items: center;
 align-self: center;
-width: 80vw;
 height: 80vh;
 // background: blue;
 // background: lightgrey;
 color: white;
+flex-direction: column;
+width: 60%;
+
+@media (min-width: 1000px) {
+  flex-direction: row;
+  width: 80%;
+}
 `
 
 const ImgBox = styled.div`
 height: 60%;
-width: 60%;
+width: 100%;
 margin:1%;
 border-radius:4pt;
+
+@media (min-width: 1000px) {
+  width: 60%;
+}
 `
 
 const DivBox = styled.div`
 background: #9B9B9B;
-height: 60%;
+height: auto;
 width: 100%;
 margin: 1%;
 border-radius:4pt;
@@ -47,15 +57,20 @@ flex-direction: column;
 // justify-content: center;
 align-items: center;
 overflow: auto;
+
+@media (min-width: 1000px) {
+  height: 60%;
+}
 `
 
 const RatingAndAddBox = styled.div`
   display: flex;
   align-items: center;
-  height: 10%;
+  height: 8%;
   width: 80%;
-  margin: 1%;
+  margin-top: 5%;
   justify-content: flex-end;
+  // background: yellow;
 
   p {
     margin-right: 15%;
@@ -130,6 +145,10 @@ button {
 }
 `
 
+const Display1 = styled.div`
+background:lightblue;
+`
+
 export default function DetailedPage(props) {
 
 	const id = props.match.params.id;
@@ -166,6 +185,7 @@ export default function DetailedPage(props) {
 	function showReviews(){
 		if(toggleReviews) {
 			return (
+        <DivBox>
 				<ReviewBox>
 					<h3>Latest Reviews</h3>
 				{Object.entries(reviews).map((item, index) => {
@@ -185,51 +205,60 @@ export default function DetailedPage(props) {
 			})}
 			<button onClick={()=>setToggleReviews(false)}>Hide</button>
 			</ReviewBox>
+      </DivBox>
+
 			)
 		} else{
 			return ""
 		}
-	}
+  }
+  
 
+  function hideProduct(){
+    if (toggleReviews=== false){
+      return (
+        <DivBox>
+          <RatingAndAddBox>
+            <Paragraph>Rating: {product.rating}</Paragraph>
+            <AddToCartButton data={{name: product.name , img: img, price: product.price, addCount: 1,
+                    quantity: product.stock, id:product.id}} id={product.id}/>
+          </RatingAndAddBox>
+            <RatingStars rating={ product.rating }/>
+            <Title>{product.name}</Title>
+            <Description>Description: {product.description}</Description>
+            
+            <ReadReviewQtyPriceBox>
+            <Link onClick={()=>setToggleReviews(true)}>READ REVIEWS!</Link>
+      
+            <QtyAndPrice>
+              <Paragraph>In Stock: {product.stock}</Paragraph>
+              <h3> Price: {product.price} SEK </h3>
+            </QtyAndPrice>
+            </ReadReviewQtyPriceBox>        
+			</DivBox>
+      )
+    }
+  }
+
+  
 
 
 	return (
 		<>
-	<Main>
-		<Wrapper>
-			<ImgBox>
-				{product.images && 	<img src={product.images[0].src.small} 
-				width="100%" 
-				height="100%"
-				alt="..." />
-				}
-			</ImgBox>
-
-			<DivBox>
-				<RatingAndAddBox>
-					<Paragraph>Rating: {product.rating}</Paragraph>
-					<AddToCartButton data={{name: product.name , img: img, price: product.price, addCount: 1,
-                  quantity: product.stock, id:product.id}} id={product.id}/>
-				</RatingAndAddBox>
-				<RatingStars rating={ product.rating }/>
-				<Title>{product.name}</Title>
-				<Description>Description: {product.description}</Description>
-				
-				<ReadReviewQtyPriceBox>
-				<Link onClick={()=>setToggleReviews(true)}>READ REVIEWS!</Link>
-
-			
-				<QtyAndPrice>
-					<Paragraph>In Stock: {product.stock}</Paragraph>
-					<h3> Price: {product.price} SEK </h3>
-				</QtyAndPrice>
-				</ReadReviewQtyPriceBox>
-
-					{showReviews()}
-			</DivBox>
-		</Wrapper>
-	</Main>
-	<CartList />
+      <Main>
+        <Wrapper>
+          <ImgBox>
+            {product.images && 	<img src={product.images[0].src.small} 
+            width="100%" 
+            height="100%"
+            alt="..." />
+            }
+          </ImgBox>
+          {showReviews()}
+          {hideProduct()}
+        </Wrapper>
+      </Main>
+	   <CartList />
 		</>
 	)
 
