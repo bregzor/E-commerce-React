@@ -3,8 +3,7 @@ import { Link } from "react-router-dom"
 import { ProductContext } from "../context/ProductContext.js"
 import styled from "styled-components"
 import CartItem from "./CartItem"
-import TotalSum from './TotalSum';
-
+import TotalSum from "./TotalSum"
 
 const Cart = styled.section`
   background: white;
@@ -18,7 +17,6 @@ const Cart = styled.section`
   top: 80px;
   z-index: 20;
   height: 100%;
-
 `
 const ImgSize = styled.img`
   width: 150px;
@@ -30,7 +28,6 @@ const CheckoutBtn = styled.button`
   width: 150px;
   height: 40px;
 `
-
 
 export default function CartList() {
   const [cartItems, setCartItems] = useState([])
@@ -63,7 +60,8 @@ export default function CartList() {
               quantity={product.quantity}
               img={product.img}
               key={index}
-              render = { getAllCartItems }
+              render={getAllCartItems}
+              addCount={product.addCount}
             />
           )
           //<
@@ -71,8 +69,8 @@ export default function CartList() {
         <Link to={`/CheckOut/`}>
           <CheckoutBtn>Checkout</CheckoutBtn>
         </Link>
-        <CheckoutBtn onClick={ (e) => localStorage.clear()}>Clear All</CheckoutBtn>
-        <TotalSum/>
+        <CheckoutBtn onClick={e => localStorage.clear()}>Clear All</CheckoutBtn>
+        <TotalSum />
       </Cart>
     </div>
   )

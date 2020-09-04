@@ -121,6 +121,8 @@ export default function DetailedPage(props) {
   useEffect(() => {
     fetchProducts()
   }, [])
+  const img = product.images && product.images[0].src.small
+  // console.log("bilden from detail", img)
 
   return (
     <>
@@ -142,10 +144,15 @@ export default function DetailedPage(props) {
               <Paragraph>Rating: {product.rating}</Paragraph>
               <AddToCartButton
                 data={{
+                  key: product.id,
+                  id: product.id,
                   name: product.name,
-                  img: product.images,
-                  price: product.price
+                  img: img,
+                  price: product.price,
+                  addCount: 1,
+                  quantity: product.stock
                 }}
+                id={product.id}
               />
             </RatingAndAddBox>
             <RatingStars rating={product.rating} />

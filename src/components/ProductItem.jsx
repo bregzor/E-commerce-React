@@ -44,9 +44,21 @@ const ProductPrice = styled.p`
 `
 
 export default function ProductItem({ name, img, desc, price, id, quantity }) {
+  console.log("check bild", img)
   return (
     <ProductArticle>
-      <AddToCartButton data={{ name: name, img: img, price: price, quantity: quantity, id:id }} id={id} />
+      <AddToCartButton
+        data={{
+          name: name,
+          img: img,
+          price: price,
+          quantity: quantity,
+          addCount: 1,
+          id: id
+        }}
+        id={id}
+        addCount={"1"}
+      />
       <Link to={`/product/${id}`}>
         <ProductImgWrapper>
           <img width="100%" src={img} />
