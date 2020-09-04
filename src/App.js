@@ -6,7 +6,7 @@ import DetailedPage from "./pages/DetailedPage";
 import StartPage from "./pages/StartPage";
 import CheckOut from "./components/CheckOut";
 import { ProductContext } from "./context/ProductContext";
-import Reviews from "./components/Reviews";
+// import Reviews from './components/Reviews'
 
 function App() {
   let [products, setProducts] = useState([]);
@@ -35,17 +35,6 @@ function App() {
           <Route path="/cart">{/* <CartPage /> */}</Route>
           <Route path="/checkout">{<CheckOut />}</Route>
         
-          <Route
-            path="/reviews/:id"
-            render={(props) => {
-              return (
-                <BaseLayout>
-                  <Reviews {...props} />
-                </BaseLayout>
-              );
-            }}
-          ></Route>
-
           <Route
             path="/product/:id"
             render={(props) => {

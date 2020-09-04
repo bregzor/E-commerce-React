@@ -1,60 +1,33 @@
-import React, { useContext, useEffect } from 'react'
-import { ProductContext } from '../context/ProductContext';
-import ReviewCard from '../components/ReviewCard'
+import React from 'react'
 import styled from 'styled-components';
 
+const UL = styled.ul`
+display:flex;
+flex-direction: column;
+align-self:center;
+width:100%;
+// height: 50%;
+border-bottom: 1px solid white;
+list-style-type: none;
+margin: 1% 0;
+padding: 1% 0;
 
-const Wrapper = styled.main`
-height: 90vh;
-width: 100vw;
-display: flex;
-justify-content: center;
-flex-direction:column;
-`
+li {
+  padding: 0 0;
+}
+` 
 
-const Heading = styled.h1`
-text-align:center;
-margin: 3% 0;
-`
 
-export default function Reviews(props) {
-
-	const id = props.match.params.id;
-
-	const { reviews , setReviews } = useContext(ProductContext);
-
-	const fetchReviews = () => {
-		fetch(`https://mock-data-api.firebaseio.com/e-commerce/reviews/${id}.json`)
-		.then(res => res.json())
-		.then(data => {
-			setReviews(data);
-			console.log(data)
-		});
-	}
-
-	useEffect(() => {
-		fetchReviews();
-	}, [])
-	
-
-	return (
-		<Wrapper>
-		<Heading>Reviews</Heading>
- 		{Object.entries(reviews).map((item, index) => {
-        const id = item[0];
-        const reviews = item[1];
-        return (
-          <ReviewCard
-            key={index}
-            id={id}
-            name={reviews.author.name}
-						description={reviews.description}
-						rating={reviews.rating}
-						title={reviews.title}
-						date= {reviews.date}
-          />
-        );
-      })}
-		</Wrapper>
-	)
+export default function Reviews({ name, date, description, title, rating }) {
+  return (
+    <>
+      <UL>
+        <li>{date}</li>
+        <li>Name: {name}</li>
+        <li>Title: {title}</li>
+        <li>Review: {description}</li>
+        <li>Rating: {rating}</li>
+      </UL>
+    </>
+  )
 }
