@@ -1,25 +1,39 @@
-import React from "react"
-import { useContext } from "react"
-import styled from "styled-components"
-import { ProductContext } from "../context/ProductContext.js"
+import React from "react";
+import { useContext } from "react";
+import styled from "styled-components";
+import { ProductContext } from "../context/ProductContext.js";
 
 const HeroImg = styled.img`
   min-width: 100%;
-  max-height: 270px;
+  max-height: 330px;
   object-fit: cover;
 `
 
-export default function Hero() {
-  const { products, setProducts } = useContext(ProductContext)
+const HeroHeader = styled.h2`
+  color: white;
+  position: absolute;
+  margin: auto;
+  min-width: min-content;
+  text-align: center;
+  width: 100%;
+  top: 30vh;
+  text-shadow: 2px 2px 2px darkgray;
+`;
 
-  const productsArray = Object.entries(products)
+export default function Hero() {
+  const { products, setProducts } = useContext(ProductContext);
+
+  const productsArray = Object.entries(products);
 
   const randomProduct =
-    productsArray[Math.floor(Math.random() * productsArray.length)]
+    productsArray[Math.floor(Math.random() * productsArray.length)];
 
   return (
     <div>
+      <HeroHeader>
+        <h2>OUR PRODUCTS</h2>
+      </HeroHeader>
       {randomProduct && <HeroImg src={randomProduct[1].images[0].src.large} />}
     </div>
-  )
+  );
 }

@@ -18,6 +18,14 @@ const Cart = styled.section`
   z-index: 20;
   height: 100%;
 `
+
+const CartHeader = styled.h3`
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+`
+
 const ImgSize = styled.img`
   width: 150px;
   height: auto;
@@ -27,6 +35,18 @@ const ImgSize = styled.img`
 const CheckoutBtn = styled.button`
   width: 150px;
   height: 40px;
+  border-radius: 5px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  background: orange;
+  color: white;
+  margin-top: 20px;
+`
+
+const CheckOutWrapp = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 export default function CartList() {
@@ -35,12 +55,21 @@ export default function CartList() {
 
   const getAllCartItems = () => {
     const AllProducts = []
+
     for (let i = 0; i < localStorage.length; i++) {
-      //check if product later
       const product = JSON.parse(localStorage.getItem(localStorage.key(i)))
       AllProducts.push(product)
     }
     setCartItems(AllProducts)
+  }
+
+  const clearAll = () => {
+    localStorage.clear()
+    getAllCartItems()
+  }
+
+  const checkOutOrder = () => {
+    localStorage.setItem("checkout", JSON.stringify(cartItems))
   }
 
   useEffect(() => {
@@ -66,12 +95,46 @@ export default function CartList() {
           )
           //<
         })}
-        <Link to={`/CheckOut/`}>
-          <CheckoutBtn>Checkout</CheckoutBtn>
-        </Link>
-        <CheckoutBtn onClick={e => localStorage.clear()}>Clear All</CheckoutBtn>
+        <CheckOutWrapp>
+          <Link to={`/CheckOut/`}>
+            <CheckoutBtn onClick={checkOutOrder}>Checkout</CheckoutBtn>
+          </Link>
+          <CheckoutBtn onClick={clearAll}>Clear All</CheckoutBtn>
+        </CheckOutWrapp>
         <TotalSum />
       </Cart>
     </div>
   )
 }
+
+// return (
+//   <>
+//     <Cart position={toggle}>
+//       <CartHeader>CartList</CartHeader>
+//       {cartItems.map((product, index) => {
+//         return (
+//           <CartItem
+//             name={product.name}
+//             price={product.price}
+//             id={product.id}
+//             quantity={product.quantity}
+//             img={product.img}
+//             key={index}
+//             render={getAllCartItems}
+//           />
+//         );
+//         //<
+//       })}
+
+//     <CheckOutWrapp>
+//       <Link to={`/CheckOut/`}>
+//         <CheckoutBtn onClick={checkOutOrder}>Checkout</CheckoutBtn>
+//       </Link>
+//       <CheckoutBtn onClick={clearAll}>
+//         Clear All
+//       </CheckoutBtn>
+//       </CheckOutWrapp>
+//       <TotalSum />
+//     </Cart>
+//   </>
+// );

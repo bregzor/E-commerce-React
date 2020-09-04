@@ -16,20 +16,41 @@ const CartItemContainer = styled.div`
   align-items: center;
 `
 
+// const CartName = styled.p`
+//   font-size: 13px;
+
+//   padding: 20px;
+//   align-items:flex-end;
+// `;
+
 const CartName = styled.p`
   font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
 `
 const CartPrice = styled.p`
   font-size: 13px;
   white-space: nowrap;
 `
 const CartImg = styled.img`
-  width: 60px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+`
+
+const CartInnerWrapp = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const StepperContainer = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 const Stepper = styled.input`
   width: 30px;
-  height: 20px;
+  height: 15px;
 `
 
 const CartButtonContainer = styled.div`
@@ -104,16 +125,20 @@ export default function CartItem({
     <>
       <CartItemContainer>
         <CartImg src={img} />
-        <CartName>{name}</CartName>
-        <CartPrice>{price} SEK</CartPrice>
-        <AddReduce>
-          <IoIosAddCircleOutline onClick={addMore} />
-        </AddReduce>
-        <Stepper type="number" value={addCount} />
-        <AddReduce>
-          <IoIosRemoveCircleOutline onClick={reduce} />
-        </AddReduce>
-        <IoMdTrash onClick={deleteItem} />
+        <CartInnerWrapp>
+          <CartName>{name}</CartName>
+          <CartPrice>{price} SEK</CartPrice>
+        </CartInnerWrapp>
+        <StepperContainer>
+          <AddReduce>
+            <IoIosAddCircleOutline onClick={addMore} />
+          </AddReduce>
+          <Stepper type="number" value={addCount} />
+          <AddReduce>
+            <IoIosRemoveCircleOutline onClick={reduce} />
+          </AddReduce>
+          <IoMdTrash onClick={deleteItem} />
+        </StepperContainer>
       </CartItemContainer>
     </>
   )

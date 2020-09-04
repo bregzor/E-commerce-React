@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react"
-import { ProductContext } from "../context/ProductContext"
-import styled from "styled-components"
-import AddToCartButton from "../components/AddToCartButton"
-import CartList from "../components/CartList"
-import { Link } from "react-router-dom"
-import RatingStars from "../components/RatingStars"
+import React, { useContext, useEffect } from 'react'
+import { ProductContext } from '../context/ProductContext';
+import styled from 'styled-components';
+import AddToCartButton from '../components/AddToCartButton'
+import CartList from '../components/CartList'
+import { Link } from "react-router-dom";
+import RatingStars from '../components/RatingStars';
 
 const Main = styled.main`
   width: 100vw;
@@ -12,6 +12,8 @@ const Main = styled.main`
   display: flex;
   justify-content: center;
 `
+
+
 
 const Wrapper = styled.div`
   display: flex;
