@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from 'styled-components';
 import { ProductContext } from '../context/ProductContext';
 
-const Cartbutton = styled.button `
+const Cartbutton = styled.button`
 	width:35px;
 	height:35px;
 	outline:none;
@@ -14,7 +14,6 @@ const Cartbutton = styled.button `
 	font-size:32px;
 	cursor:pointer;
 	z-index:1;
-	position:
 `
 
 export default function AddToCartButton({ id, data}) {

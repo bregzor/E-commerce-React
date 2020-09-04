@@ -1,7 +1,7 @@
-import React from "react"
-import styled from "styled-components"
-import AddToCartButton from "./AddToCartButton"
-import { Link } from "react-router-dom"
+import React from "react";
+import styled from "styled-components";
+import AddToCartButton from "./AddToCartButton";
+import { Link } from "react-router-dom";
 
 const ProductArticle = styled.article`
   display: flex;
@@ -18,7 +18,7 @@ const ProductArticle = styled.article`
     transition: border 500ms ease-in;
     border: 1px solid orange;
   }
-`
+`;
 
 const ProductImgWrapper = styled.div`
   width: 100%;
@@ -27,26 +27,35 @@ const ProductImgWrapper = styled.div`
   overflow: hidden;
   position: relative;
   top: -10px;
-`
+`;
 
 const ProductName = styled.h3`
   text-transform: uppercase;
-`
+`;
 
 const ProductInfoContainer = styled.div`
   padding: 20px;
-`
+`;
 
 const ProductPrice = styled.p`
   font-weight: bold;
   font-size: 24px;
   text-align: right;
-`
+`;
 
 export default function ProductItem({ name, img, desc, price, id, quantity }) {
   return (
     <ProductArticle>
-      <AddToCartButton data={{ name: name, img: img, price: price, quantity: quantity, id:id }} id={id} />
+      <AddToCartButton
+        data={{
+          name: name,
+          img: img,
+          price: price,
+          quantity: quantity,
+          id: id,
+        }}
+        id={id}
+      />
       <Link to={`/product/${id}`}>
         <ProductImgWrapper>
           <img width="100%" src={img} />
@@ -59,5 +68,5 @@ export default function ProductItem({ name, img, desc, price, id, quantity }) {
         <ProductPrice>{price} SEK</ProductPrice>
       </ProductInfoContainer>
     </ProductArticle>
-  )
+  );
 }

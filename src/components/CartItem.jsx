@@ -59,7 +59,6 @@ export default function CartItem({ name, price, img, quantity, id, render }) {
   }
 
   function deleteItem() {
-    console.log("deleted item: "  + id);
     localStorage.removeItem(`product_${id}`);
     render();
   }

@@ -19,6 +19,7 @@ const OurMain = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: flex;
+
 `;
 const OurFooter = styled.footer`
   display: flex;
