@@ -18,7 +18,7 @@ li {
 ` 
 
 
-export default function ReviewCard({ name, date, description, title, rating }) {
+export default function Reviews({ name, date, description, title, rating }) {
   return (
     <>
       <UL>

@@ -9,10 +9,10 @@ import Reviews from "../components/Reviews";
 
 
 const Main = styled.main`
-width: 100vw;
-height: 90vh;
-display: flex;
-justify-content:center;
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
 `
 
 
@@ -50,49 +50,48 @@ overflow: auto;
 `
 
 const RatingAndAddBox = styled.div`
-display: flex;
-align-items: center;
-height:10%;
-width: 80%;
-margin: 1%;
-justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  height: 10%;
+  width: 80%;
+  margin: 1%;
+  justify-content: flex-end;
 
-
-p {
-	margin-right: 15%;
-}
+  p {
+    margin-right: 15%;
+  }
 `
 
-const Title = styled.h2` 
-display:flex;
-align-items: center;
-margin: 0 0 10px 0;
-height: 20%;
-// background: blue;
-width: 80%;
+const Title = styled.h2`
+  display: flex;
+  align-items: center;
+  margin: 0 0 10px 0;
+  height: 20%;
+  // background: blue;
+  width: 80%;
 `
 
-const Description = styled.p `
-width: 80%;
-height: 40%;
-margin: 0 0 10px 0;
-// background: red;
-border-bottom: 1px solid white;
+const Description = styled.p`
+  width: 80%;
+  height: 40%;
+  margin: 0 0 10px 0;
+  // background: red;
+  border-bottom: 1px solid white;
 `
 
 const ReadReviewQtyPriceBox = styled.div`
-width: 80%;
-justify-content: space-evenly;
-align-items: center;
-display:flex;
-height: 10%;
+  width: 80%;
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+  height: 10%;
 
-a {
-	color: white;
-	text-decoration: none;
-	width: 100%;
-	margin: 0 2% 0 2%;
-}
+  a {
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    margin: 0 2% 0 2%;
+  }
 `
 
 
@@ -108,8 +107,10 @@ h3{
 	margin-left: 10%;
 }
 `
+
+
 const Paragraph = styled.p`
-margin:  0 2% 0 2%;
+  margin: 0 2% 0 2%;
 `
 
 const ReviewBox = styled.div`
@@ -160,6 +161,7 @@ export default function DetailedPage(props) {
 		fetchReviews();
 	}, [])
 
+  const img = product.images && product.images[0].src.small
 
 	function showReviews(){
 		if(toggleReviews) {
@@ -206,7 +208,8 @@ export default function DetailedPage(props) {
 			<DivBox>
 				<RatingAndAddBox>
 					<Paragraph>Rating: {product.rating}</Paragraph>
-					<AddToCartButton data={{name: product.name , img: product.images, price: product.price}}/>
+					<AddToCartButton data={{name: product.name , img: img, price: product.price, addCount: 1,
+                  quantity: product.stock }}id={product.id}/>
 				</RatingAndAddBox>
 				<RatingStars rating={ product.rating }/>
 				<Title>{product.name}</Title>
@@ -229,4 +232,5 @@ export default function DetailedPage(props) {
 	<CartList />
 		</>
 	)
+
 }
