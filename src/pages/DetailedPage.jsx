@@ -209,7 +209,7 @@ export default function DetailedPage(props) {
 				<RatingAndAddBox>
 					<Paragraph>Rating: {product.rating}</Paragraph>
 					<AddToCartButton data={{name: product.name , img: img, price: product.price, addCount: 1,
-                  quantity: product.stock }}id={product.id}/>
+                  quantity: product.stock, id:product.id}} id={product.id}/>
 				</RatingAndAddBox>
 				<RatingStars rating={ product.rating }/>
 				<Title>{product.name}</Title>

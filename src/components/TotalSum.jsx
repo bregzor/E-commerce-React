@@ -37,3 +37,7 @@ export default function TotalSum() {
     </>
   );
 }
+
+
+//Onchange för quantity > ökar sum
+// Skall +-
