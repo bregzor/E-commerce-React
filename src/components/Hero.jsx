@@ -31,7 +31,7 @@ export default function Hero() {
   return (
     <div>
       <HeroHeader>
-        <h2>OUR PRODUCTS</h2>
+        OUR PRODUCTS
       </HeroHeader>
       {randomProduct && <HeroImg src={randomProduct[1].images[0].src.large} />}
     </div>

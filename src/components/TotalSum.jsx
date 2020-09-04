@@ -33,7 +33,7 @@ export default function TotalSum() {
 
   return (
     <>
-      <TotalHeader>{total} SEK</TotalHeader>
+      <TotalHeader> TOTAL {total} SEK</TotalHeader>
     </>
   );
 }

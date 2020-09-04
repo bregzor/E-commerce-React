@@ -7,13 +7,14 @@ import {
 } from "react-icons/io"
 
 const CartItemContainer = styled.div`
-  background: gray;
   width: 100%;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid orange;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding:10px;
+  align-items:flex-end;
 `
 
 // const CartName = styled.p`
@@ -89,7 +90,6 @@ export default function CartItem({
           JSON.stringify(updatedLocalStorage)
         )
       : console.log(parseInt(quantity))
-    console.log(addCount)
     render()
   }
 
