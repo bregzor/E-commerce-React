@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { ProductContext } from '../context/ProductContext';
 import styled from "styled-components";
 
 const TotalHeader = styled.h4`
@@ -7,30 +8,32 @@ const TotalHeader = styled.h4`
   font-size:24px;
   width:100%;
   text-align:right;
-  border-top:1px solid black;
   padding-top:25px;
   border-bottom:1px solid black;
 `;
 
 export default function TotalSum() {
   let [total, setTotal] = useState(0);
+  let {lsRender} = useContext(ProductContext);
 
   const calculateTotal = () => {
     let sum = 0;
     for (let i = 0; i < localStorage.length; i++) {
       const product = JSON.parse(localStorage.getItem(localStorage.key(i)));
-      sum += parseInt(product.price);
+      if(!localStorage.getItem("checkout")) {
+        sum += parseInt(product.price);
+      }      
     }
     setTotal(sum);
   };
 
   useEffect(() => {
     calculateTotal();
-  }, []);
+  }, [lsRender]);
 
   return (
     <>
-      <TotalHeader>{total}</TotalHeader>
+      <TotalHeader>{total} SEK</TotalHeader>
     </>
   );
 }

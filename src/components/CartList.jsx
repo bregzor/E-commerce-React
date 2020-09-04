@@ -19,6 +19,13 @@
     height: 100%;
   `;
 
+const CartHeader = styled.h3`
+  text-align:center;
+  text-transform:uppercase;
+  padding-bottom:10px;
+  border-bottom:1px solid gray;   
+`
+
   const ImgSize = styled.img`
     width: 150px;
     height: auto;
@@ -38,7 +45,8 @@
   `;
 
   const CheckOutWrapp = styled.div`
-    
+        display: flex;
+    justify-content: space-between;
   `
 
   export default function CartList() {
@@ -60,7 +68,6 @@
       getAllCartItems();
     }
 
-
     const checkOutOrder = () => {
       localStorage.setItem("checkout", JSON.stringify(cartItems));
     };
@@ -72,7 +79,7 @@
     return (
       <>
         <Cart position={toggle}>
-          <h1>CartList</h1>
+          <CartHeader>CartList</CartHeader>
           {cartItems.map((product, index) => {
             return (
               <CartItem

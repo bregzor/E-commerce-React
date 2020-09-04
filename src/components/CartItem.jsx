@@ -14,22 +14,39 @@ const CartItemContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
+  align-items:flex-end;
 `;
 
 const CartName = styled.p`
   font-size: 13px;
+  font-weight: bold;
+  text-transform:uppercase;
 `;
 const CartPrice = styled.p`
   font-size: 13px;
   white-space: nowrap;
 `;
 const CartImg = styled.img`
-  width: 60px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 `;
+
+const CartInnerWrapp = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+
+const StepperContainer = styled.div`
+  display: flex;
+  align-items:center;
+`;
+
 
 const Stepper = styled.input`
   width: 30px;
-  height: 20px;
+  height: 15px;
 `;
 
 const CartButtonContainer = styled.div`
@@ -63,13 +80,15 @@ export default function CartItem({ name, price, img, quantity, id, render }) {
     render();
   }
 
-
   return (
     <>
       <CartItemContainer>
         <CartImg src={img} />
-        <CartName>{name}</CartName>
-        <CartPrice>{price} SEK</CartPrice>
+        <CartInnerWrapp>
+          <CartName>{name}</CartName>
+          <CartPrice>{price} SEK</CartPrice>
+        </CartInnerWrapp>
+        <StepperContainer>
         <AddReduce>
           <IoIosAddCircleOutline onClick={add} />
         </AddReduce>
@@ -77,7 +96,8 @@ export default function CartItem({ name, price, img, quantity, id, render }) {
         <AddReduce>
           <IoIosRemoveCircleOutline onClick={remove} />
         </AddReduce>
-          <IoMdTrash onClick={deleteItem} />
+        <IoMdTrash onClick={deleteItem} />
+        </StepperContainer>
       </CartItemContainer>
     </>
   );
