@@ -1,21 +1,24 @@
 import React, { useEffect, useState, useContext } from "react"
-import styled from "styled-components"
-import { ProductContext } from "../context/ProductContext.js"
-import CartItem from "./CartItem"
 import { Link } from "react-router-dom"
+import { ProductContext } from "../context/ProductContext.js"
+import styled from "styled-components"
+import CartItem from "./CartItem"
+import TotalSum from './TotalSum';
+
 
 const Cart = styled.section`
   background: white;
   opacity: 0.9;
   width: 320px;
-  position: absolute;
+  position: fixed;
   border-radius: 3px;
   padding: 20px;
   right: ${props => props.position || "0px"};
   transition: all 250ms ease-in;
-  top: 60px;
+  top: 80px;
   z-index: 20;
   height: 100%;
+
 `
 const ImgSize = styled.img`
   width: 150px;
@@ -28,9 +31,10 @@ const CheckoutBtn = styled.button`
   height: 40px;
 `
 
+
 export default function CartList() {
   const [cartItems, setCartItems] = useState([])
-  const { toggle } = useContext(ProductContext)
+  const { toggle, lsRender } = useContext(ProductContext)
 
   const getAllCartItems = () => {
     const AllProducts = []
@@ -44,7 +48,7 @@ export default function CartList() {
 
   useEffect(() => {
     getAllCartItems()
-  }, [])
+  }, [lsRender])
 
   return (
     <div>
@@ -55,8 +59,11 @@ export default function CartList() {
             <CartItem
               name={product.name}
               price={product.price}
+              id={product.id}
+              quantity={product.quantity}
               img={product.img}
               key={index}
+              render = { getAllCartItems }
             />
           )
           //<
@@ -64,6 +71,8 @@ export default function CartList() {
         <Link to={`/CheckOut/`}>
           <CheckoutBtn>Checkout</CheckoutBtn>
         </Link>
+        <CheckoutBtn onClick={ (e) => localStorage.clear()}>Clear All</CheckoutBtn>
+        <TotalSum/>
       </Cart>
     </div>
   )

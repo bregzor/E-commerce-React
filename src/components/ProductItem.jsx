@@ -43,10 +43,10 @@ const ProductPrice = styled.p`
   text-align: right;
 `
 
-export default function ProductItem({ name, img, desc, price, id }) {
+export default function ProductItem({ name, img, desc, price, id, quantity }) {
   return (
     <ProductArticle>
-      <AddToCartButton data={{ name: name, img: img, price: price }} id={id} />
+      <AddToCartButton data={{ name: name, img: img, price: price, quantity: quantity, id:id }} id={id} />
       <Link to={`/product/${id}`}>
         <ProductImgWrapper>
           <img width="100%" src={img} />
@@ -55,6 +55,7 @@ export default function ProductItem({ name, img, desc, price, id }) {
       <ProductInfoContainer>
         <ProductName>{name}</ProductName>
         <p>{desc}</p>
+        <p>{quantity}</p>
         <ProductPrice>{price} SEK</ProductPrice>
       </ProductInfoContainer>
     </ProductArticle>
