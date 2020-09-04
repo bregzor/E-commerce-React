@@ -7,7 +7,7 @@ import DetailedPage from "./pages/DetailedPage";
 import StartPage from "./pages/StartPage";
 import CheckOut from "./components/CheckOut";
 import { ProductContext } from "./context/ProductContext";
-import Reviews from './components/Reviews'
+// import Reviews from './components/Reviews'
 
 function App() {
 
@@ -18,12 +18,12 @@ function App() {
 
   return (
     <>
-      <ProductContext.Provider value={{ products, setProducts, product, setProduct, toggle, setToggle, reviews, setReviews }}>
+      <ProductContext.Provider value={{ products, setProducts, product, setProduct, toggle, setToggle, reviews, setReviews}}>
         <Switch>
           <Route path="/cart">{/* <CartPage /> */}</Route>
           <Route path="/checkout">{<CheckOut />}</Route>
 
-          <Route
+          {/* <Route
               path="/reviews/:id"
               render={(props) => {
                 return (
@@ -32,7 +32,7 @@ function App() {
                 </BaseLayout>
                 );
               }}
-          ></Route>
+          ></Route> */}
 
           <Route
             path="/product/:id"

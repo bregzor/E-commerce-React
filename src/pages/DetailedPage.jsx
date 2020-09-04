@@ -1,9 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ProductContext } from '../context/ProductContext';
 import styled from 'styled-components';
 import AddToCartButton from '../components/AddToCartButton'
 import CartList from '../components/CartList'
 import { Link } from "react-router-dom";
+import RatingStars from '../components/RatingStars';
+import Reviews from "../components/Reviews";
 
 
 const Main = styled.main`
@@ -12,7 +14,6 @@ height: 90vh;
 display: flex;
 justify-content:center;
 `
-import RatingStars from '../components/RatingStars';
 
 
 const Wrapper = styled.div`
@@ -22,13 +23,14 @@ justify-self: center;
 align-items: center;
 align-self: center;
 width: 80vw;
-height: 50vh;
-background: lightgray;
+height: 80vh;
+// background: blue;
+// background: lightgrey;
 color: white;
 `
 
 const ImgBox = styled.div`
-height: 100%;
+height: 60%;
 width: 60%;
 margin:1%;
 border-radius:4pt;
@@ -36,14 +38,15 @@ border-radius:4pt;
 
 const DivBox = styled.div`
 background: #9B9B9B;
-height: 100%;
+height: 60%;
 width: 100%;
 margin: 1%;
 border-radius:4pt;
 display:flex;
 flex-direction: column;
-justify-content: center;
+// justify-content: center;
 align-items: center;
+overflow: auto;
 `
 
 const RatingAndAddBox = styled.div`
@@ -93,13 +96,12 @@ a {
 `
 
 
-
 const QtyAndPrice = styled.div`
 display: flex;
 justify-content: flex-end;
 align-items: center;
 height: 10%;
-width: 80%;
+width: 100%;
 // background: orange;
 
 h3{
@@ -110,12 +112,31 @@ const Paragraph = styled.p`
 margin:  0 2% 0 2%;
 `
 
+const ReviewBox = styled.div`
+height: 100%;
+width: 80%;
+margin-top: 5%;
+
+button {
+	width: 20%;
+	background: transparent;
+	border: none;
+	border: 1px solid white;
+	color: white;
+	border-radius: 4pt;
+	padding 2%;
+	margin: 2% 0;
+}
+`
 
 export default function DetailedPage(props) {
 
 	const id = props.match.params.id;
 
 	const { product , setProduct } = useContext(ProductContext);
+	const { reviews, setReviews } = useContext(ProductContext);
+	let [toggleReviews, setToggleReviews] = useState(false)
+
 
 	const fetchProducts = () => {
 		fetch(`https://mock-data-api.firebaseio.com/e-commerce/products/${id}.json`)
@@ -125,9 +146,49 @@ export default function DetailedPage(props) {
 		});
 	}
 
+	const fetchReviews = () => {
+		fetch(`https://mock-data-api.firebaseio.com/e-commerce/reviews/${id}.json`)
+			.then((res) => res.json())
+			.then((data) => {
+				setReviews(data);
+			});
+	};
+
+
 	useEffect(() => {
 		fetchProducts();
+		fetchReviews();
 	}, [])
+
+
+	function showReviews(){
+		if(toggleReviews) {
+			return (
+				<ReviewBox>
+					<h3>Latest Reviews</h3>
+				{Object.entries(reviews).map((item, index) => {
+				const id = item[0];
+				const reviews = item[1];
+				return (
+					<Reviews
+						key={index}
+						id={id}
+						name={reviews.author.name}
+						description={reviews.description}
+						rating={reviews.rating}
+						title={reviews.title}
+						date={reviews.date}
+					/>
+				);
+			})}
+			<button onClick={()=>setToggleReviews(false)}>Hide</button>
+			</ReviewBox>
+			)
+		} else{
+			return ""
+		}
+	}
+
 
 
 	return (
@@ -152,17 +213,20 @@ export default function DetailedPage(props) {
 				<Description>Description: {product.description}</Description>
 				
 				<ReadReviewQtyPriceBox>
-				<Link to={`/reviews/${id}`}>READ REVIEWS!</Link>
+				<Link onClick={()=>setToggleReviews(true)}>READ REVIEWS!</Link>
+
 			
 				<QtyAndPrice>
 					<Paragraph>In Stock: {product.stock}</Paragraph>
-					<h3> Price: {product.price} </h3>
+					<h3> Price: {product.price} SEK </h3>
 				</QtyAndPrice>
 				</ReadReviewQtyPriceBox>
+
+					{showReviews()}
 			</DivBox>
 		</Wrapper>
 	</Main>
-		<CartList />
+	<CartList />
 		</>
 	)
 }
