@@ -22,7 +22,6 @@ const CartImg = styled.img`
 
 const CartQty = styled.p``
 
-
 export default function CheckOutItems({ name, price, img, qty }) {
   return (
     <CartItemMainContainer>
@@ -31,7 +30,7 @@ export default function CheckOutItems({ name, price, img, qty }) {
       <TextWrapper>
         <CartPrice>{price} SEK</CartPrice>
         <CartName>{name}</CartName>
-        <CartQty>Qty: {"---"}</CartQty>
+        <CartQty>Qty: {qty}</CartQty>
       </TextWrapper>
     </CartItemMainContainer>
   )

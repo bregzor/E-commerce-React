@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
 import CheckOutItems from "./CheckOutItem"
 
-import NameInputField from './CheckOutNameInput'
+import NameInputField from "./CheckOutNameInput"
 import PlaceOrderBtn from "./PlaceOrderButton"
 import { Link } from "react-router-dom"
+import CheckoutCoupons from "./CheckoutCoupons"
+import TotalSum from "./TotalSum"
+import { ProductContext } from "../context/ProductContext"
 
 const CheckOutMainContainer = styled.div`
   background: green;
@@ -57,10 +60,11 @@ const CheckOutInputName = styled.div`
 const OrderTotal = styled.div``
 
 export default function CheckOut() {
-  
   const [Loc, setLoc] = useState([])
   let [nrOfItems, setNrOfItems] = useState()
   let [totalPrice, setTotalPrice] = useState()
+  let [total, setTotal] = useState(0)
+  const { sum, setSum } = useContext(ProductContext)
 
   const getCartItems = () => {
     const AllProducts = []
@@ -74,10 +78,14 @@ export default function CheckOut() {
     nrOfItems = Object.keys(AllProducts).length
     setNrOfItems(nrOfItems)
   }
+  console.log("totalPrice", totalPrice)
 
   useEffect(() => {
     getCartItems()
   }, [])
+
+  console.log("total", total)
+  console.log("setTotal")
 
   return (
     <>
@@ -89,12 +97,13 @@ export default function CheckOut() {
               Enter your name:
               <NameInputField></NameInputField>
             </label>
-             
-      
-         
+            <CheckoutCoupons />
           </CheckOutInputName>
+
           <OrderTotal>
-            {nrOfItems} Items Totalprice: {totalPrice} SEK
+            <TotalSum />
+
+            <p>{setSum}</p>
           </OrderTotal>
           <PlaceOrderBtn></PlaceOrderBtn>
         </CheckOutInput>
@@ -103,17 +112,21 @@ export default function CheckOut() {
             {nrOfItems} Items <Link to="/CartList">Edit</Link>
           </CartQty>
           {Loc.map((product, index) => {
-            return (
-              <CheckOutItems
-                name={product.name}
-                price={product.price}
-                img={product.img}
-                key={index}
-              />
-            )
+            if (product.name) {
+              return (
+                <CheckOutItems
+                  name={product.name}
+                  price={product.price}
+                  img={product.img}
+                  key={index}
+                  qty={product.addCount}
+                />
+              )
+            }
           })}
         </CheckOutCart>
       </CheckOutMainContainer>
     </>
   )
 }
+// {nrOfItems} Items Totalprice: {totalPrice} SEK
