@@ -19,7 +19,7 @@ export default function ProductList() {
       {Object.entries(products).map((item, index) => {
         const id = item[0]
         const product = item[1]
-        console.log("kollar img", product.images[0].src.small)
+        // console.log("kollar img", product.images[0].src.small)
         return (
           <ProductItem
             key={index}
