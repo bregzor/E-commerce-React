@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef, useContext } from "react"
 import { ProductContext } from "../context/ProductContext"
+import styled from "styled-components"
+
+const TotDiscount = styled.div``
 
 export default function CheckoutCoupons() {
   let [coupons, setCoupons] = useState({})

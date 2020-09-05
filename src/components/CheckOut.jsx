@@ -75,17 +75,17 @@ export default function CheckOut() {
     setLoc(AllProducts)
     totalPrice = AllProducts.reduce((a, { price }) => a + price, 0)
     setTotalPrice(totalPrice)
+
     nrOfItems = Object.keys(AllProducts).length
     setNrOfItems(nrOfItems)
   }
-  console.log("totalPrice", totalPrice)
 
   useEffect(() => {
     getCartItems()
   }, [])
 
-  console.log("total", total)
-  console.log("setTotal")
+  console.log(sum)
+  console.log(totalPrice)
 
   return (
     <>
@@ -101,9 +101,8 @@ export default function CheckOut() {
           </CheckOutInputName>
 
           <OrderTotal>
+            <p> {nrOfItems} Items</p>
             <TotalSum />
-
-            <p>{setSum}</p>
           </OrderTotal>
           <PlaceOrderBtn></PlaceOrderBtn>
         </CheckOutInput>
