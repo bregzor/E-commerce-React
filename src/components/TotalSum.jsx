@@ -48,7 +48,7 @@ export default function TotalSum() {
       {" "}
       <TotalHeader>
         {" "}
-  Totalprice{withDiscount}: {total} SEK
+        Totalprice{withDiscount}: {total} SEK
       </TotalHeader>{" "}
     </>
   )
