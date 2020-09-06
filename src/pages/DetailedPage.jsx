@@ -15,7 +15,6 @@ const Main = styled.main`
   justify-content: center;
 `
 
-
 const Wrapper = styled.div`
 display:flex;
 justify-content: center;
@@ -145,9 +144,6 @@ button {
 }
 `
 
-const Display1 = styled.div`
-background:lightblue;
-`
 
 export default function DetailedPage(props) {
 
@@ -241,7 +237,6 @@ export default function DetailedPage(props) {
   }
 
   
-
 
 	return (
 		<>
