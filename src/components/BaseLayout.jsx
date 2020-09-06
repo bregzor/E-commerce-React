@@ -4,6 +4,7 @@ import logo from "../images/grupp3_logo2.svg";
 import cart from "../images/cart_image.svg";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
+import CartCount from "./CartCount";
 
 const OurHeader = styled.header`
   width: 100%;
@@ -11,6 +12,8 @@ const OurHeader = styled.header`
   background: #1a1b1d;
   height: 80px;
   color: white;
+  position:fixed;
+  z-index:1000;
 `;
 
 const OurMain = styled.main`
@@ -42,9 +45,15 @@ const LogoImgFooter = styled.img`
   width: 150px;
 `;
 
+const CartImgWrap = styled.div`
+ display:flex;
+ flex-direction:row;
+ justify-content:flex-end;
+ width:100%;
+`
+
 const CartImg = styled.img`
   margin: 0;
-  margin-left: auto;
   padding: 10px 20px 0px 10px;
   height: 60px;
   width: 60px;
@@ -63,7 +72,8 @@ const NamesListItem = styled.li`
 `;
 
 export default function BaseLayout({ children }) {
-  const { toggle, setToggle } = useContext(ProductContext);
+
+  const { toggle, setToggle, cartCount } = useContext(ProductContext);
 
   const toggleMenu = () => {
     toggle === "-370px" ? setToggle("0px") : setToggle("-370px");
@@ -75,7 +85,10 @@ export default function BaseLayout({ children }) {
         <Link to="/">
           <LogoImgHeader src={logo} />
         </Link>
+        <CartImgWrap>
+        <CartCount count={cartCount}/>
         <CartImg src={cart} onClick={toggleMenu} />
+        </CartImgWrap>
       </OurHeader>
       <OurMain>{children}</OurMain>
       <OurFooter>

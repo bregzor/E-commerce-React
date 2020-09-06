@@ -13,6 +13,7 @@ export default function StartPage() {
 		fetch("https://mock-data-api.firebaseio.com/e-commerce.json")
 		.then(res => res.json())
 		.then(data => {
+			console.log(data);
 			setProducts(data["products"]);
 		});
 	}

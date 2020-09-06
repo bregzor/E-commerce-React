@@ -18,12 +18,12 @@ const Cartbutton = styled.button`
 `
 
 export default function AddToCartButton({ id, data }) {
-  const { lsRender, setlsRender } = useContext(ProductContext)
+  const { lsRender, setlsRender, setCartCount, cartCount } = useContext(ProductContext)
 
   const addItemToLocalStorage = () => {
     localStorage.setItem(`product_${id}`, JSON.stringify(data))
     setlsRender(lsRender + 1)
-
+    setCartCount(cartCount+1)
     console.log("data from addtocart", data)
   }
 

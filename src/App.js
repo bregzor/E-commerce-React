@@ -8,13 +8,15 @@ import CheckOut from "./components/CheckOut"
 import { ProductContext } from "./context/ProductContext"
 // import Reviews from './components/Reviews'
 
-function App() {
+export default function App() {
+  
   let [products, setProducts] = useState([])
   let [product, setProduct] = useState([])
   let [toggle, setToggle] = useState("-370px")
   let [reviews, setReviews] = useState([])
   let [lsRender, setlsRender] = useState(0)
   let [sum, setSum] = useState(0)
+  const [cartCount, setCartCount] = useState(0)
 
   return (
     <>
@@ -31,13 +33,13 @@ function App() {
           lsRender,
           setlsRender,
           sum,
-          setSum
+          setSum,
+          cartCount,
+          setCartCount
         }}
       >
         <Switch>
-          <Route path="/cart">{/* <CartPage /> */}</Route>
           <Route path="/checkout">{<CheckOut />}</Route>
-
           <Route
             path="/product/:id"
             render={props => {
@@ -59,5 +61,3 @@ function App() {
     </>
   )
 }
-
-export default App
