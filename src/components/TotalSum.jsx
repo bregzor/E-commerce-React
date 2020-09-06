@@ -24,7 +24,6 @@ export default function TotalSum() {
       let count = product.addCount
       let productPrice = product.price
       let productXCount = productPrice * count
-      //   if (!localStorage.getItem("checkout")) {
       if (product.name) {
         sum += parseInt(productXCount)
       }

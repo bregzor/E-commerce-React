@@ -83,18 +83,21 @@ export default function CartList() {
       <Cart position={toggle}>
         <CartHeader>CART</CartHeader>
         {cartItems.map((product, index) => {
-          return (
-            <CartItem
-              name={product.name}
-              price={product.price}
-              id={product.id}
-              quantity={product.quantity}
-              img={product.img}
-              key={index}
-              render={getAllCartItems}
-              addCount={product.addCount}
-            />
-          )
+          if (product.name) {
+            return (
+              <CartItem
+                name={product.name}
+                price={product.price}
+                id={product.id}
+                quantity={product.quantity}
+                img={product.img}
+                key={index}
+                render={getAllCartItems}
+                addCount={product.addCount}
+              />
+            )
+          }
+
           //<
         })}
         <CheckOutWrapp>
