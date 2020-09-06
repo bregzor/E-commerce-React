@@ -35,19 +35,20 @@ width: 60%;
 `
 
 const ImgBox = styled.div`
-height: 60%;
+height: 30%;
 width: 100%;
 margin:1%;
 border-radius:4pt;
 
 @media (min-width: 1000px) {
   width: 60%;
+  height: 60%
 }
 `
 
 const DivBox = styled.div`
 background: #9B9B9B;
-height: auto;
+min-height: 60%;
 width: 100%;
 margin: 1%;
 border-radius:4pt;
@@ -55,10 +56,11 @@ display:flex;
 flex-direction: column;
 // justify-content: center;
 align-items: center;
-overflow: auto;
+
 
 @media (min-width: 1000px) {
   height: 60%;
+  overflow: auto;
 }
 `
 
@@ -105,6 +107,10 @@ const ReadReviewQtyPriceBox = styled.div`
     text-decoration: none;
     width: 100%;
     margin: 0 2% 0 2%;
+
+    &:hover {
+      color: orange;
+    }
   }
 `
 
@@ -140,7 +146,45 @@ button {
 	color: white;
 	border-radius: 4pt;
 	padding 2%;
-	margin: 2% 0;
+  margin: 2% 0;
+  
+  &:hover{
+    color:orange;
+    border: 1px solid orange;
+  }
+}
+`
+
+const NoReviewsView = styled.div`
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+`
+
+const NoReviewsP = styled.p`
+width: 100%;
+display: flex;
+justify-content: center;
+align-items:center;
+font-size: 23px;
+`
+
+const GoBackBtn = styled.button`
+width: 30%;
+background: transparent;
+border: none;
+border: 1px solid white;
+color: white;
+border-radius: 4pt;
+padding 2%;
+margin: 4% 0;
+
+&:hover{
+  color:orange;
+  border: 1px solid orange;
 }
 `
 
@@ -178,32 +222,43 @@ export default function DetailedPage(props) {
 
   const img = product.images && product.images[0].src.small
 
+
 	function showReviews(){
 		if(toggleReviews) {
 			return (
         <DivBox>
-				<ReviewBox>
-					<h3>Latest Reviews</h3>
-				{Object.entries(reviews).map((item, index) => {
-				const id = item[0];
-				const reviews = item[1];
-				return (
-					<Reviews
-						key={index}
-						id={id}
-						name={reviews.author.name}
-						description={reviews.description}
-						rating={reviews.rating}
-						title={reviews.title}
-						date={reviews.date}
-					/>
-				);
-			})}
-			<button onClick={()=>setToggleReviews(false)}>Hide</button>
-			</ReviewBox>
-      </DivBox>
+          { reviews ?
+            <ReviewBox>
+              <h3>Latest Reviews</h3>
+              {Object.entries(reviews).map((item, index) => {
+              const id = item[0];
+              const reviews = item[1];
 
-			)
+                return (
+                <Reviews
+                  key={index}
+                  id={id}
+                  name={reviews.author.name}
+                  description={reviews.description}
+                  rating={reviews.rating}
+                  title={reviews.title}
+                  date={reviews.date}
+                />   
+                )
+            })} 
+
+            <button onClick={()=>setToggleReviews(false)}>Hide Reviews</button>
+           </ReviewBox>
+
+         : 
+            <NoReviewsView>
+            <NoReviewsP>There's no reviews for this product</NoReviewsP>       
+            <GoBackBtn onClick={()=>setToggleReviews(false)}>Go back to product</GoBackBtn>
+          
+            </NoReviewsView>
+      }
+      </DivBox>
+)
 		} else{
 			return ""
 		}
