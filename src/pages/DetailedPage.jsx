@@ -74,7 +74,11 @@ const RatingAndAddBox = styled.div`
   // background: yellow;
 
   p {
-    margin-right: 15%;
+    margin-right: 20%;
+
+    @media (min-width: 800px) {
+      margin-right: 13%;
+    }
   }
 `
 
@@ -100,37 +104,58 @@ const ReadReviewQtyPriceBox = styled.div`
   justify-content: space-evenly;
   align-items: center;
   display: flex;
-  height: 10%;
+  flex-direction:column;
+
+  @media (min-width: 800px) {
+    flex-direction:row;
+  }
 
   a {
     color: white;
     text-decoration: none;
     width: 100%;
-    margin: 0 2% 0 2%;
+    margin: 2%;
+    cursor:ponter;
 
     &:hover {
       color: orange;
     }
+
+    @media (min-width: 800px) {
+      margin: 0 2% 0 2%;
+    }
+    
   }
 `
 
 
 const QtyAndPrice = styled.div`
 display: flex;
-justify-content: flex-end;
-align-items: center;
-height: 10%;
+flex-direction: column;
 width: 100%;
-// background: orange;
+align-items: flex-end;
+
+@media (min-width: 800px) {
+  width: 100%;
+  justify-content: flex-end;
+  flex-direction:row;
+}
+
 
 h3{
-	margin-left: 10%;
+  margin-left: 0%;
+  margin-bottom: 3%;
+  
+  @media (min-width: 800px) {
+    margin-left: 10%;
+    margin-bottom: 0%;
+  }
 }
 `
 
 
 const Paragraph = styled.p`
-  margin: 0 2% 0 2%;
+  margin: 0 2% 0 0%;
 `
 
 const ReviewBox = styled.div`
@@ -139,7 +164,7 @@ width: 80%;
 margin-top: 5%;
 
 button {
-	width: 20%;
+	width: 40%;
 	background: transparent;
 	border: none;
 	border: 1px solid white;
@@ -147,9 +172,14 @@ button {
 	border-radius: 4pt;
 	padding 2%;
   margin: 2% 0;
+  cursor: pointer;
+
+  @media (min-width: 1000px) {
+    width: 20%;
+  }
   
   &:hover{
-    color:orange;
+    color: orange;
     border: 1px solid orange;
   }
 }
@@ -169,11 +199,16 @@ width: 100%;
 display: flex;
 justify-content: center;
 align-items:center;
-font-size: 23px;
+font-size: 15px;
+
+@media (min-width: 800px) {
+  font-size: 23px;
+}
+
 `
 
 const GoBackBtn = styled.button`
-width: 30%;
+width: 40%;
 background: transparent;
 border: none;
 border: 1px solid white;
@@ -181,6 +216,10 @@ color: white;
 border-radius: 4pt;
 padding 2%;
 margin: 4% 0;
+
+@media (min-width: 800px) {
+  width: 30%;
+}
 
 &:hover{
   color:orange;
