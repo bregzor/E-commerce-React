@@ -3,13 +3,20 @@ import { ProductContext } from "../context/ProductContext"
 import styled from "styled-components"
 
 const TotalHeader = styled.h4`
+  margin-top: 0px;
   font-weight: bold;
-  align-self: flex-end;
-  font-size: 24px;
+  font-size: 22px;
   width: 100%;
-  text-align: right;
-  padding-top: 25px;
-  border-bottom: 1px solid black;
+  text-align: center;
+
+
+`
+
+const DiscountText = styled.p`
+
+font-size: 16px;
+
+
 `
 
 export default function TotalSum() {
@@ -39,16 +46,16 @@ export default function TotalSum() {
 
   if (sum) {
     total = sum
-    withDiscount = " (with discount)"
+    withDiscount = "*With discount"
   }
 
   return (
     <>
-      {" "}
       <TotalHeader>
-        {" "}
-        Totalprice{withDiscount}: {total} SEK
-      </TotalHeader>{" "}
+        Totalprice: {total} SEK
+        <DiscountText>{withDiscount}</DiscountText>
+      </TotalHeader>
+
     </>
   )
 }

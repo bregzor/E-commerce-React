@@ -7,58 +7,89 @@ import PlaceOrderBtn from "./PlaceOrderButton"
 import { Link } from "react-router-dom"
 import CheckoutCoupons from "./CheckoutCoupons"
 import TotalSum from "./TotalSum"
+import OurHeader from "./BaseLayout"
 import { ProductContext } from "../context/ProductContext"
+import checkoutLogo from "../images/checkout.svg"
 
 const CheckOutMainContainer = styled.div`
-  background: green;
+  background: lightgrey;
   width: 100%;
   height: fit-content;
   display: flex;
-  justify-content: left;
-  margin-left: 100px;
+  flex-direction: column;
+  justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
+  @media (min-width: 600px) {
+    flex-direction: row;
+  }
 `
-const CheckOutH1 = styled.h1`
-  width: 100%;
-  background: red;
+const CheckOutH1 = styled.img`
+  margin-top: 50px;
+  width: 200px;
+  display: flex;
+  align-self: center;
 `
 const CheckOutCart = styled.div`
-  background: lightgrey;
-  min-width: 300px;
-  max-width: 70%;
+  background: white;
+
   height: fit-content;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin: 50px 0px 0px 600px;
-  padding: 50px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  @media (min-width: 600px) {
+    min-width: 300px;
+    padding: 50px;
+  }
 `
 
-const CartQty = styled.div``
-const CheckOutInput = styled.div`
-  position: fixed;
+const CartQty = styled.div`
+  display: flex;
+  padding-bottom: 10px;
+  justify-content: space-between;
 
-  background: limegreen;
-  min-width: 300px;
-  max-width: 70%;
-  height: 400px;
+  @media (min-width: 600px) {
+    margin-left: 10px;
+
+    padding-bottom: 0px;
+  }
+`
+const CheckOutInput = styled.div`
+  background: white;
+
   display: flex;
   flex-direction: column;
+  margin: 20px;
+  border-radius: 10px;
 
-  margin: 50px;
+  @media (min-width: 600px) {
+    position: sticky;
+    top: 0;
+    min-width: 300px;
+    max-width: 70%;
+    height: 400px;
+  }
 `
 
 const CheckOutInputName = styled.div`
+  display: flex;
+  align-self: center;
   padding: 50px;
-  background: grey;
+  padding-top: 20px;
+  //background: grey;
   max-width: 100%;
   height: 10px;
   margin-bottom: 20px;
+  @media (min-width: 600px) {
+    padding: 50px;
+  }
 `
-
-const OrderTotal = styled.div``
-
+const NameInputLabel = styled.label`
+  font-weight: bold;
+`
 export default function CheckOut() {
   const [Loc, setLoc] = useState([])
   let [nrOfItems, setNrOfItems] = useState()
@@ -70,11 +101,11 @@ export default function CheckOut() {
       const product = JSON.parse(localStorage.getItem(localStorage.key(i)))
       AllProducts.push(product)
       let qty = AllProducts[i].addCount
-      nrOfItems = Object.keys(AllProducts).length + qty
+      nrOfItems = Object.keys(AllProducts).length + qty - 1
     }
     setLoc(AllProducts)
-    totalPrice = AllProducts.reduce((a, { price }) => a + price, 0)
-    setTotalPrice(totalPrice)
+    // totalPrice = AllProducts.reduce((a, { price }) => a + price, 0)
+    // setTotalPrice(totalPrice)
     setNrOfItems(nrOfItems)
   }
 
@@ -84,42 +115,42 @@ export default function CheckOut() {
 
   return (
     <>
-      <CheckOutH1>Checkout</CheckOutH1>
-      <CheckOutMainContainer>
-        <CheckOutInput>
-          <CheckOutInputName>
-            <label>
-              Enter your name:
-              <NameInputField></NameInputField>
-            </label>
-            <CheckoutCoupons />
-          </CheckOutInputName>
+      <OurHeader>
+        <CheckOutH1 src={checkoutLogo} />
+        <CheckOutMainContainer>
+          <CheckOutInput>
+            <CheckOutInputName>
+              <NameInputLabel>
+                Enter your name: <br />
+                <NameInputField></NameInputField>
+              </NameInputLabel>
+            </CheckOutInputName>
 
-          <OrderTotal>
-            <p> {nrOfItems} Items</p>
+            <CheckoutCoupons />
+
             <TotalSum />
-          </OrderTotal>
-          <PlaceOrderBtn></PlaceOrderBtn>
-        </CheckOutInput>
-        <CheckOutCart>
-          <CartQty>
-            {nrOfItems} Items <Link to="/CartList">Edit</Link>
-          </CartQty>
-          {Loc.map((product, index) => {
-            if (product.name) {
-              return (
-                <CheckOutItems
-                  name={product.name}
-                  price={product.price}
-                  img={product.img}
-                  key={index}
-                  qty={product.addCount}
-                />
-              )
-            }
-          })}
-        </CheckOutCart>
-      </CheckOutMainContainer>
+            <PlaceOrderBtn></PlaceOrderBtn>
+          </CheckOutInput>
+          <CheckOutCart>
+            <CartQty>
+              {nrOfItems} Items <Link to="/CartList">Edit</Link>
+            </CartQty>
+            {Loc.map((product, index) => {
+              if (product.name) {
+                return (
+                  <CheckOutItems
+                    name={product.name}
+                    price={product.price}
+                    img={product.img}
+                    key={index}
+                    qty={product.addCount}
+                  />
+                )
+              }
+            })}
+          </CheckOutCart>
+        </CheckOutMainContainer>
+      </OurHeader>
     </>
   )
 }
