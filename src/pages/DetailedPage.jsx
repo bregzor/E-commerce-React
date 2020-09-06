@@ -15,7 +15,6 @@ const Main = styled.main`
   justify-content: center;
 `
 
-
 const Wrapper = styled.div`
 display:flex;
 justify-content: center;
@@ -36,19 +35,20 @@ width: 60%;
 `
 
 const ImgBox = styled.div`
-height: 60%;
+height: 30%;
 width: 100%;
 margin:1%;
 border-radius:4pt;
 
 @media (min-width: 1000px) {
   width: 60%;
+  height: 60%
 }
 `
 
 const DivBox = styled.div`
 background: #9B9B9B;
-height: auto;
+min-height: 60%;
 width: 100%;
 margin: 1%;
 border-radius:4pt;
@@ -56,10 +56,11 @@ display:flex;
 flex-direction: column;
 // justify-content: center;
 align-items: center;
-overflow: auto;
+
 
 @media (min-width: 1000px) {
   height: 60%;
+  overflow: auto;
 }
 `
 
@@ -73,7 +74,11 @@ const RatingAndAddBox = styled.div`
   // background: yellow;
 
   p {
-    margin-right: 15%;
+    margin-right: 20%;
+
+    @media (min-width: 800px) {
+      margin-right: 13%;
+    }
   }
 `
 
@@ -99,33 +104,58 @@ const ReadReviewQtyPriceBox = styled.div`
   justify-content: space-evenly;
   align-items: center;
   display: flex;
-  height: 10%;
+  flex-direction:column;
+
+  @media (min-width: 800px) {
+    flex-direction:row;
+  }
 
   a {
     color: white;
     text-decoration: none;
     width: 100%;
-    margin: 0 2% 0 2%;
+    margin: 2%;
+    cursor:ponter;
+
+    &:hover {
+      color: orange;
+    }
+
+    @media (min-width: 800px) {
+      margin: 0 2% 0 2%;
+    }
+    
   }
 `
 
 
 const QtyAndPrice = styled.div`
 display: flex;
-justify-content: flex-end;
-align-items: center;
-height: 10%;
+flex-direction: column;
 width: 100%;
-// background: orange;
+align-items: flex-end;
+
+@media (min-width: 800px) {
+  width: 100%;
+  justify-content: flex-end;
+  flex-direction:row;
+}
+
 
 h3{
-	margin-left: 10%;
+  margin-left: 0%;
+  margin-bottom: 3%;
+  
+  @media (min-width: 800px) {
+    margin-left: 10%;
+    margin-bottom: 0%;
+  }
 }
 `
 
 
 const Paragraph = styled.p`
-  margin: 0 2% 0 2%;
+  margin: 0 2% 0 0%;
 `
 
 const ReviewBox = styled.div`
@@ -134,20 +164,69 @@ width: 80%;
 margin-top: 5%;
 
 button {
-	width: 20%;
+	width: 40%;
 	background: transparent;
 	border: none;
 	border: 1px solid white;
 	color: white;
 	border-radius: 4pt;
 	padding 2%;
-	margin: 2% 0;
+  margin: 2% 0;
+  cursor: pointer;
+
+  @media (min-width: 1000px) {
+    width: 20%;
+  }
+  
+  &:hover{
+    color: orange;
+    border: 1px solid orange;
+  }
 }
 `
 
-const Display1 = styled.div`
-background:lightblue;
+const NoReviewsView = styled.div`
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
 `
+
+const NoReviewsP = styled.p`
+width: 100%;
+display: flex;
+justify-content: center;
+align-items:center;
+font-size: 15px;
+
+@media (min-width: 800px) {
+  font-size: 23px;
+}
+
+`
+
+const GoBackBtn = styled.button`
+width: 40%;
+background: transparent;
+border: none;
+border: 1px solid white;
+color: white;
+border-radius: 4pt;
+padding 2%;
+margin: 4% 0;
+
+@media (min-width: 800px) {
+  width: 30%;
+}
+
+&:hover{
+  color:orange;
+  border: 1px solid orange;
+}
+`
+
 
 export default function DetailedPage(props) {
 
@@ -182,32 +261,43 @@ export default function DetailedPage(props) {
 
   const img = product.images && product.images[0].src.small
 
+
 	function showReviews(){
 		if(toggleReviews) {
 			return (
         <DivBox>
-				<ReviewBox>
-					<h3>Latest Reviews</h3>
-				{Object.entries(reviews).map((item, index) => {
-				const id = item[0];
-				const reviews = item[1];
-				return (
-					<Reviews
-						key={index}
-						id={id}
-						name={reviews.author.name}
-						description={reviews.description}
-						rating={reviews.rating}
-						title={reviews.title}
-						date={reviews.date}
-					/>
-				);
-			})}
-			<button onClick={()=>setToggleReviews(false)}>Hide</button>
-			</ReviewBox>
-      </DivBox>
+          { reviews ?
+            <ReviewBox>
+              <h3>Latest Reviews</h3>
+              {Object.entries(reviews).map((item, index) => {
+              const id = item[0];
+              const reviews = item[1];
 
-			)
+                return (
+                <Reviews
+                  key={index}
+                  id={id}
+                  name={reviews.author.name}
+                  description={reviews.description}
+                  rating={reviews.rating}
+                  title={reviews.title}
+                  date={reviews.date}
+                />   
+                )
+            })} 
+
+            <button onClick={()=>setToggleReviews(false)}>Hide Reviews</button>
+           </ReviewBox>
+
+         : 
+            <NoReviewsView>
+            <NoReviewsP>There's no reviews for this product</NoReviewsP>       
+            <GoBackBtn onClick={()=>setToggleReviews(false)}>Go back to product</GoBackBtn>
+          
+            </NoReviewsView>
+      }
+      </DivBox>
+)
 		} else{
 			return ""
 		}
@@ -241,7 +331,6 @@ export default function DetailedPage(props) {
   }
 
   
-
 
 	return (
 		<>
