@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import { ProductContext } from "../context/ProductContext.js";
-import styled from "styled-components";
-import CartItem from "./CartItem";
-import TotalSum from "./TotalSum";
+import React, { useEffect, useState, useContext } from "react"
+import { Link } from "react-router-dom"
+import { ProductContext } from "../context/ProductContext.js"
+import styled from "styled-components"
+import CartItem from "./CartItem"
+import TotalSum from "./TotalSum"
 
 const Cart = styled.section`
   background: white;
@@ -12,25 +12,25 @@ const Cart = styled.section`
   position: fixed;
   border-radius: 3px;
   padding: 20px;
-  right: ${(props) => props.position || "0px"};
+  right: ${props => props.position || "0px"};
   transition: all 250ms ease-in;
   top: 80px;
   z-index: 20;
   height: 100%;
-`;
+`
 
 const CartHeader = styled.h3`
   text-align: center;
   text-transform: uppercase;
   padding-bottom: 10px;
   border-bottom: 1px solid gray;
-`;
+`
 
 const ImgSize = styled.img`
   width: 150px;
   height: auto;
   object-fit: cover;
-`;
+`
 
 const CheckoutBtn = styled.button`
   width: 150px;
@@ -42,41 +42,41 @@ const CheckoutBtn = styled.button`
   background: orange;
   color: white;
   margin-top: 20px;
-`;
+`
 
 const CheckOutWrapp = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+`
 
 export default function CartList() {
-  const [cartItems, setCartItems] = useState([]);
-  const { toggle, lsRender } = useContext(ProductContext);
+  const [cartItems, setCartItems] = useState([])
+  const { toggle, lsRender } = useContext(ProductContext)
 
   const getAllCartItems = () => {
-    const AllProducts = [];
+    const AllProducts = []
 
     for (let i = 0; i < localStorage.length; i++) {
-      const product = JSON.parse(localStorage.getItem(localStorage.key(i)));
-      console.log(localStorage.getItem("checkout"));
-        AllProducts.push(product);
+      const product = JSON.parse(localStorage.getItem(localStorage.key(i)))
+      // console.log(localStorage.getItem("checkout"));
+      AllProducts.push(product)
     }
-    setCartItems(AllProducts);
-  };
+    setCartItems(AllProducts)
+  }
 
   const clearAll = () => {
-    localStorage.clear();
-    getAllCartItems();
-  };
+    localStorage.clear()
+    getAllCartItems()
+  }
 
   const checkOutOrder = () => {
-    localStorage.setItem("checkout", JSON.stringify(cartItems));
-  };
+    localStorage.setItem("checkout", JSON.stringify(cartItems))
+  }
 
   useEffect(() => {
-    getAllCartItems();
-  }, [lsRender]);
+    getAllCartItems()
+  }, [lsRender])
 
   return (
     <div>
@@ -94,7 +94,7 @@ export default function CartList() {
               render={getAllCartItems}
               addCount={product.addCount}
             />
-          );
+          )
           //<
         })}
         <CheckOutWrapp>
@@ -106,5 +106,5 @@ export default function CartList() {
         <TotalSum />
       </Cart>
     </div>
-  );
+  )
 }

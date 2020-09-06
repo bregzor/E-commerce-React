@@ -44,7 +44,7 @@ const ProductPrice = styled.p`
 `
 
 export default function ProductItem({ name, img, desc, price, id, quantity }) {
-  console.log("check bild", img)
+  // console.log("check bild", img)
   return (
     <ProductArticle>
       <AddToCartButton
