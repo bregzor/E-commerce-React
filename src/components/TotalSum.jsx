@@ -35,9 +35,20 @@ export default function TotalSum() {
     calculateTotal()
   }, [lsRender])
 
+  let withDiscount = ""
+
+  if (sum) {
+    total = sum
+    withDiscount = " (with discount)"
+  }
+
   return (
     <>
-      <TotalHeader> TOTAL {total} SEK</TotalHeader>
+      {" "}
+      <TotalHeader>
+        {" "}
+        Totalprice{withDiscount}: {total} SEK
+      </TotalHeader>{" "}
     </>
   )
 }

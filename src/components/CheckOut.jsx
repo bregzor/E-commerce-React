@@ -63,29 +63,24 @@ export default function CheckOut() {
   const [Loc, setLoc] = useState([])
   let [nrOfItems, setNrOfItems] = useState()
   let [totalPrice, setTotalPrice] = useState()
-  let [total, setTotal] = useState(0)
-  const { sum, setSum } = useContext(ProductContext)
 
   const getCartItems = () => {
     const AllProducts = []
     for (let i = 0; i < localStorage.length; i++) {
       const product = JSON.parse(localStorage.getItem(localStorage.key(i)))
       AllProducts.push(product)
+      let qty = AllProducts[i].addCount
+      nrOfItems = Object.keys(AllProducts).length + qty
     }
     setLoc(AllProducts)
     totalPrice = AllProducts.reduce((a, { price }) => a + price, 0)
     setTotalPrice(totalPrice)
-    nrOfItems = Object.keys(AllProducts).length
     setNrOfItems(nrOfItems)
   }
-  console.log("totalPrice", totalPrice)
 
   useEffect(() => {
     getCartItems()
   }, [])
-
-  console.log("total", total)
-  console.log("setTotal")
 
   return (
     <>
@@ -101,9 +96,8 @@ export default function CheckOut() {
           </CheckOutInputName>
 
           <OrderTotal>
+            <p> {nrOfItems} Items</p>
             <TotalSum />
-
-            <p>{nrOfItems}</p>
           </OrderTotal>
           <PlaceOrderBtn></PlaceOrderBtn>
         </CheckOutInput>
