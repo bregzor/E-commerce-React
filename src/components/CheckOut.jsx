@@ -103,7 +103,7 @@ export default function CheckOut() {
           <OrderTotal>
             <TotalSum />
 
-            <p>{setSum}</p>
+            <p>{nrOfItems}</p>
           </OrderTotal>
           <PlaceOrderBtn></PlaceOrderBtn>
         </CheckOutInput>
