@@ -16,16 +16,17 @@ const DiscountText = styled.p`
 
 export default function TotalSum() {
   let [total, setTotal] = useState(0)
-  let { lsRender, sum, setSum } = useContext(ProductContext)
+  let { lsRender, sum } = useContext(ProductContext)
 
   const calculateTotal = () => {
     let sum = 0
     for (let i = 0; i < localStorage.length; i++) {
+      
       const product = JSON.parse(localStorage.getItem(localStorage.key(i)))
-      console.log("prisantal", product.addCount)
       let count = product.addCount
       let productPrice = product.price
       let productXCount = productPrice * count
+
       if (product.name) {
         sum += parseInt(productXCount)
       }
