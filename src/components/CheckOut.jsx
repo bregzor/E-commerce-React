@@ -80,6 +80,7 @@ export default function CheckOut() {
   const [Loc, setLoc] = useState([])
   let [nrOfItems, setNrOfItems] = useState()
   let [totalPrice, setTotalPrice] = useState()
+  let {setToggle} = useContext(ProductContext);
 
   const getCartItems = () => {
     const AllProducts = []
@@ -96,7 +97,9 @@ export default function CheckOut() {
   }
 
   useEffect(() => {
+    setToggle("-370px");
     getCartItems()
+
   }, [])
 
   return (
