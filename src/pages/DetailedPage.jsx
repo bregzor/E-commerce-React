@@ -110,19 +110,20 @@ const ReadReviewQtyPriceBox = styled.div`
     flex-direction:row;
   }
 
-  a {
+  button {
     color: white;
     text-decoration: none;
     width: 100%;
     margin: 2%;
     cursor:ponter;
+    background:transparent;
+    border: none;
+    display:flex;
+    outline: none;
+    cursor:pointer;
 
     &:hover {
       color: orange;
-    }
-
-    @media (min-width: 800px) {
-      margin: 0 2% 0 2%;
     }
     
   }
@@ -315,7 +316,7 @@ export default function DetailedPage(props) {
             <Description>Description: {product.description}</Description>
             
             <ReadReviewQtyPriceBox>
-            <Link onClick={()=>setToggleReviews(true)}>READ REVIEWS!</Link>
+            <button onClick={()=>setToggleReviews(true)}>READ REVIEWS!</button>
       
             <QtyAndPrice>
               <Paragraph>In Stock: {product.stock}</Paragraph>

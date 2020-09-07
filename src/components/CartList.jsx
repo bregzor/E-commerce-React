@@ -58,7 +58,7 @@ const CheckOutWrapp = styled.div`
 export default function CartList() {
 
   const [cartItems, setCartItems] = useState([])
-  const { toggle, lsRender, setlsRender } = useContext(ProductContext)
+  const { toggle, lsRender, setlsRender, setCartCount } = useContext(ProductContext)
 
   const getAllCartItems = () => {
     const AllProducts = []
@@ -73,6 +73,7 @@ export default function CartList() {
   const clearAll = () => {
     localStorage.clear()
     setlsRender(lsRender + 1);
+    setCartCount(0);
   }
 
   const checkOutOrder = () => {
