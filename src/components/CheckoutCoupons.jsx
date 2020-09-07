@@ -12,7 +12,7 @@ margin-bottom: 30px;
 font-weight: bold;
 
 @media (min-width: 600px) {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 
 `
