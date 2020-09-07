@@ -227,7 +227,6 @@ margin: 4% 0;
 }
 `
 
-
 export default function DetailedPage(props) {
 
 	const id = props.match.params.id;
@@ -236,12 +235,11 @@ export default function DetailedPage(props) {
 	const { reviews, setReviews } = useContext(ProductContext);
 	let [toggleReviews, setToggleReviews] = useState(false)
 
-
 	const fetchProducts = () => {
 		fetch(`https://mock-data-api.firebaseio.com/e-commerce/products/${id}.json`)
 		.then(res => res.json())
 		.then(data => {
-			setProduct(data);
+      setProduct(data);
 		});
 	}
 
@@ -253,9 +251,8 @@ export default function DetailedPage(props) {
 			});
 	};
 
-
 	useEffect(() => {
-		fetchProducts();
+    fetchProducts();
 		fetchReviews();
 	}, [])
 
@@ -329,8 +326,6 @@ export default function DetailedPage(props) {
       )
     }
   }
-
-  
 
 	return (
 		<>

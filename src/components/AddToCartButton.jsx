@@ -32,6 +32,5 @@ export default function AddToCartButton({ id, data }) {
     setlsRender(lsRender + 1)
     setCartCount(cartCount +1)
   }
-
   return <Cartbutton onClick={addItemToLocalStorage}>+</Cartbutton>
 }

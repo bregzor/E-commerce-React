@@ -16,7 +16,6 @@ const ProductArticle = styled.article`
   border: 0;
   &:hover {
     transition: border 500ms ease-in;
-    ${'' /* border: 1px solid orange; */}
   }
 `
 
@@ -44,7 +43,7 @@ const ProductPrice = styled.p`
 `
 
 export default function ProductItem({ name, img, desc, price, id, quantity }) {
-  // console.log("check bild", img)
+  console.log("check bild", img)
   return (
     <ProductArticle>
       <AddToCartButton

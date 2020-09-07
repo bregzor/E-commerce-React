@@ -5,6 +5,7 @@ import { ProductContext } from "../context/ProductContext.js";
 
 const HeroImg = styled.img`
   min-width: 100%;
+  min-height:330px;
   max-height: 330px;
   object-fit: cover;
 `
@@ -20,20 +21,24 @@ const HeroHeader = styled.h2`
   text-shadow: 2px 2px 2px darkgray;
 `;
 
+const HeroWrapper = styled.section`
+  height:330px;
+  background:black;
+`
+
 export default function Hero() {
-  const { products, setProducts } = useContext(ProductContext);
 
+  const { products } = useContext(ProductContext);
   const productsArray = Object.entries(products);
-
   const randomProduct =
     productsArray[Math.floor(Math.random() * productsArray.length)];
 
   return (
-    <div>
+   <HeroWrapper>
       <HeroHeader>
         OUR PRODUCTS
       </HeroHeader>
-      {randomProduct && <HeroImg src={randomProduct[1].images[0].src.large} />}
-    </div>
+      {randomProduct && <HeroImg src={randomProduct[1].images[0].src.medium} />}
+</HeroWrapper>
   );
 }
