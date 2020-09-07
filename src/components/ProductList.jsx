@@ -12,6 +12,7 @@ const ProductsWrapper = styled.section`
 `
 
 export default function ProductList() {
+  
   const { products } = useContext(ProductContext)
 
   return (
@@ -31,7 +32,8 @@ export default function ProductList() {
             addCount={product.addCount}
           />
         )
-      })}
+      })
+      }
     </ProductsWrapper>
   )
 }

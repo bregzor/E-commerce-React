@@ -85,16 +85,25 @@ const NamesListItem = styled.li`
   padding: 2px;
 `
 
+const LoaderContainer = styled.div`
+  transition:all 500ms ease-in;
+  opacity: ${props => props.loading || 1};
+`
+
+
 export default function BaseLayout({ children }) {
 
-  const { toggle, setToggle, cartCount } = useContext(ProductContext);
+  const { toggle, setToggle, cartCount, loader} = useContext(ProductContext);
 
   const toggleMenu = () => {
-    toggle === "-370px" ? setToggle("0px") : setToggle("-370px")
+    toggle === "-370px" 
+    ? setToggle("0px") 
+    : setToggle("-370px")
   }
 
   return (
     <>
+    <LoaderContainer loading={loader}>
       <OurHeader>
         <Link to="/">
           <LogoImgHeader src={logo} />
@@ -118,6 +127,7 @@ export default function BaseLayout({ children }) {
           <NamesListItem>Martin Axelsson</NamesListItem>
         </NamesList>
       </OurFooter>
+      </LoaderContainer>
     </>
   )
 }
