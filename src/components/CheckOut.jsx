@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext, useRef } from "react"
 import styled from "styled-components"
 import CheckOutItems from "./CheckOutItem"
 
 import NameInputField from "./CheckOutNameInput"
 import PlaceOrderBtn from "./PlaceOrderButton"
+import CheckOutInput from "./CheckoutInput"
 import { Link } from "react-router-dom"
 import CheckoutCoupons from "./CheckoutCoupons"
 import TotalSum from "./TotalSum"
@@ -57,39 +58,24 @@ const CartQty = styled.div`
     padding-bottom: 0px;
   }
 `
-const CheckOutInput = styled.div`
-  background: white;
 
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-  border-radius: 10px;
 
-  @media (min-width: 600px) {
-    position: sticky;
-    top: 0;
-    min-width: 300px;
-    max-width: 70%;
-    height: 400px;
-  }
-`
-
-const CheckOutInputName = styled.div`
-  display: flex;
-  align-self: center;
-  padding: 50px;
-  padding-top: 20px;
-  //background: grey;
-  max-width: 100%;
-  height: 10px;
-  margin-bottom: 20px;
-  @media (min-width: 600px) {
-    padding: 50px;
-  }
-`
-const NameInputLabel = styled.label`
-  font-weight: bold;
-`
+// const CheckOutInputName = styled.div`
+//   display: flex;
+//   align-self: center;
+//   padding: 50px;
+//   padding-top: 20px;
+//   //background: grey;
+//   max-width: 100%;
+//   height: 10px;
+//   margin-bottom: 20px;
+//   @media (min-width: 600px) {
+//     padding: 50px;
+//   }
+// `
+// const NameInputLabel = styled.label`
+//   font-weight: bold;
+// `
 export default function CheckOut() {
   const [Loc, setLoc] = useState([])
   let [nrOfItems, setNrOfItems] = useState()
@@ -108,7 +94,9 @@ export default function CheckOut() {
     // setTotalPrice(totalPrice)
     setNrOfItems(nrOfItems)
   }
-
+  
+ 
+  
   useEffect(() => {
     getCartItems()
   }, [])
@@ -119,7 +107,7 @@ export default function CheckOut() {
         <CheckOutH1 src={checkoutLogo} />
         <CheckOutMainContainer>
           <CheckOutInput>
-            <CheckOutInputName>
+            {/* <CheckOutInputName>
               <NameInputLabel>
                 Enter your name: <br />
                 <NameInputField></NameInputField>
@@ -129,7 +117,7 @@ export default function CheckOut() {
             <CheckoutCoupons />
 
             <TotalSum />
-            <PlaceOrderBtn></PlaceOrderBtn>
+            <PlaceOrderBtn></PlaceOrderBtn> */}
           </CheckOutInput>
           <CheckOutCart>
             <CartQty>
