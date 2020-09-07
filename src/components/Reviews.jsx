@@ -16,8 +16,6 @@ li {
   padding: 0 0;
 }
 ` 
-
-
 export default function Reviews({ name, date, description, title, rating }) {
   return (
     <>
