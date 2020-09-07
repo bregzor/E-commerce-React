@@ -11,6 +11,7 @@ import TotalSum from "./TotalSum"
 import OurHeader from "./BaseLayout"
 import { ProductContext } from "../context/ProductContext"
 import checkoutLogo from "../images/checkout.svg"
+import CartList from "../components/CartList"
 
 const CheckOutMainContainer = styled.div`
   background: lightgrey;
@@ -137,7 +138,8 @@ export default function CheckOut() {
               }
             })}
           </CheckOutCart>
-        </CheckOutMainContainer>
+          <CartList/>
+    </CheckOutMainContainer>
       </OurHeader>
     </>
   )

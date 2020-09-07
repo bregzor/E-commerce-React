@@ -105,7 +105,7 @@ export default function CartList() {
         })}
         <CheckOutWrapp>
           <Link to={`/CheckOut/`}>
-            <CheckoutBtn>Checkout</CheckoutBtn>
+            <CheckoutBtn onClick={checkOutOrder}>Checkout</CheckoutBtn>
           </Link>
           <CheckoutBtn onClick={clearAll}>Clear All</CheckoutBtn>
           <TotalSum />

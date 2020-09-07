@@ -32,9 +32,8 @@ border: 1px solid #1a1b1d;
 
 `
 const DiscountBtn = styled.button`
-
 height: 27px;
-
+cursor:pointer;
 margin-left:-1px;
 padding-right:5px;
 padding-left:5px;
@@ -50,7 +49,7 @@ export default function CheckoutCoupons() {
   let [coupons, setCoupons] = useState({})
   let { sum, setSum } = useContext(ProductContext)
   let discountValue = useRef()
-
+  let discButton = useRef();
   let totalSum = 0
 
   const fetchCoupons = () => {
@@ -83,9 +82,12 @@ export default function CheckoutCoupons() {
 
       if (discountValue.current.value.toUpperCase() == code) {
         totalSum = Math.floor(sum * discount)
+        setSum(totalSum)
+        discButton.current.disabled = "disabled";
+      } else {
+        console.log("Wrong code");
       }
-      setSum(totalSum)
-      console.log("totalSum", totalSum)
+    
     })
   }
 
@@ -98,7 +100,7 @@ export default function CheckoutCoupons() {
         placeholder="Enter your discount code"
       />
 
-      <DiscountBtn onClick={() => calDiscount(discountValue.current.value)}>
+      <DiscountBtn ref={discButton}  onClick={() => calDiscount(discountValue.current.value)}>
         Add
       </DiscountBtn>
       </DiscountInputLabel>
