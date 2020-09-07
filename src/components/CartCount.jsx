@@ -28,7 +28,10 @@ export default function CartCount() {
   };
 
   useEffect(() => {
-    setCartCount(parseInt(localStorage.length));
+  localStorage.getItem("checkout") 
+  ? setCartCount(parseInt(localStorage.length - 1))
+  : setCartCount(parseInt(localStorage.length))
+  
   }, []);
 
   return (

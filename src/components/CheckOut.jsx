@@ -93,7 +93,7 @@ export default function CheckOut() {
     setLoc(AllProducts)
     // totalPrice = AllProducts.reduce((a, { price }) => a + price, 0)
     // setTotalPrice(totalPrice)
-    setNrOfItems(nrOfItems)
+    setNrOfItems(nrOfItems - 1)
   }
   
  
