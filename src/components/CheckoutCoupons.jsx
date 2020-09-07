@@ -42,6 +42,12 @@ color:white;
 border-radius: 5px;
 border: 1px solid #1a1b1d;
 border-radius: 0px 5px 5px 0px;
+&:hover {
+    background: rgb(190, 125, 3);
+  }
+  &:active {
+    background: lightgrey;
+  }
 `
 
 

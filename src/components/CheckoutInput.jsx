@@ -1,8 +1,8 @@
-import React, { useRef, useContext, useState } from "react";
-import CheckoutCoupons from "./CheckoutCoupons";
-import TotalSum from "./TotalSum";
-import styled from "styled-components";
-import { ProductContext } from "../context/ProductContext";
+import React, { useRef, useContext, useState } from "react"
+import CheckoutCoupons from "./CheckoutCoupons"
+import TotalSum from "./TotalSum"
+import styled from "styled-components"
+import { ProductContext } from "../context/ProductContext"
 
 const CheckOutInput = styled.div`
   background: white;
@@ -19,7 +19,7 @@ const CheckOutInput = styled.div`
     max-width: 70%;
     height: 400px;
   }
-`;
+`
 const PlaceOrderBtn = styled.button`
   margin-top: 30px;
   background: orange;
@@ -33,9 +33,15 @@ const PlaceOrderBtn = styled.button`
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 20px;
+  &:hover {
+    background: rgb(190, 125, 3);
+  }
+  &:active {
+    background: lightgrey;
+  }
   @media (min-width: 600px) {
   }
-`;
+`
 const NameInputField = styled.input`
   margin-top: 10px;
   margin-bottom: 25px;
@@ -44,7 +50,7 @@ const NameInputField = styled.input`
   padding-left: 5px;
   border-radius: 5px;
   border: 1px solid #1a1b1d;
-`;
+`
 
 const CheckOutInputName = styled.div`
   display: flex;
@@ -58,10 +64,10 @@ const CheckOutInputName = styled.div`
   @media (min-width: 600px) {
     padding: 50px;
   }
-`;
+`
 const NameInputLabel = styled.label`
   font-weight: bold;
-`;
+`
 
 const ConfirmContainer = styled.div`
   position: absolute;
@@ -76,41 +82,41 @@ const ConfirmContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: bold;
-`;
+`
 
 export default function CheckoutInput() {
-  const nameInputField = useRef();
+  const nameInputField = useRef()
 
   // const { product, setProduct } = useContext(ProductContext)
-  const [confirmed, setConfirmed] = useState(false);
+  const [confirmed, setConfirmed] = useState(false)
 
   const SEND_ORDER_URL =
-    "https://mock-data-api.firebaseio.com/e-commerce/orders/group-3.json";
+    "https://mock-data-api.firebaseio.com/e-commerce/orders/group-3.json"
 
-  let checkout = localStorage.getItem("checkout");
-  console.log(checkout);
+  let checkout = localStorage.getItem("checkout")
+  console.log(checkout)
 
   function sendOrderToApi() {
-    const url = SEND_ORDER_URL;
+    const url = SEND_ORDER_URL
     const data = {
       name: nameInputField.current.value,
       products: JSON.parse(checkout),
-    };
+    }
     fetch(url, {
       method: "POST",
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((data) => {
-        setConfirmed(true);
-      });
+        setConfirmed(true)
+      })
   }
 
   const renderConfirmation = () => {
     if (confirmed) {
-      return <ConfirmContainer>Order confirmed, thank you!</ConfirmContainer>;
+      return <ConfirmContainer>Order confirmed, thank you!</ConfirmContainer>
     }
-  };
+  }
 
   return (
     <>
@@ -129,5 +135,5 @@ export default function CheckoutInput() {
         {renderConfirmation()}
       </CheckOutInput>
     </>
-  );
+  )
 }
