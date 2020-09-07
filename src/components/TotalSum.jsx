@@ -8,14 +8,10 @@ const TotalHeader = styled.h4`
   font-size: 18px;
   width: 100%;
   text-align: center;
-padding:10px;
-
 `
 
 const DiscountText = styled.p`
-font-size: 16px;
-
-
+  font-size: 16px;
 `
 
 export default function TotalSum() {
@@ -51,10 +47,9 @@ export default function TotalSum() {
   return (
     <>
       <TotalHeader>
-        SEK {total}
+        Totalprice: {total} SEK
         <DiscountText>{withDiscount}</DiscountText>
       </TotalHeader>
-
     </>
   )
 }

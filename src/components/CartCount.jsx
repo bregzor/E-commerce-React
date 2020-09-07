@@ -10,8 +10,8 @@ const CountButtonDisplay = styled.button`
   color: white;
   font-weight: bold;
   position: absolute;
-  right: 70px;
-  top: 15px;
+  right: 50px;
+  top: 10px;
   border: 1px solid white;
   &:hover {
   }

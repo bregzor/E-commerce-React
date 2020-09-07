@@ -27,7 +27,7 @@ const CheckOutMainContainer = styled.div`
   }
 `
 const CheckOutH1 = styled.img`
-  margin-top: 50px;
+  margin-top: 100px;
   width: 200px;
   display: flex;
   align-self: center;
@@ -59,7 +59,6 @@ const CartQty = styled.div`
     padding-bottom: 0px;
   }
 `
-
 
 // const CheckOutInputName = styled.div`
 //   display: flex;
@@ -95,9 +94,7 @@ export default function CheckOut() {
     // setTotalPrice(totalPrice)
     setNrOfItems(nrOfItems)
   }
-  
- 
-  
+
   useEffect(() => {
     getCartItems()
   }, [])
@@ -138,8 +135,8 @@ export default function CheckOut() {
               }
             })}
           </CheckOutCart>
-          <CartList/>
-    </CheckOutMainContainer>
+          <CartList />
+        </CheckOutMainContainer>
       </OurHeader>
     </>
   )

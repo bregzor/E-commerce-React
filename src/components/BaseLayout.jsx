@@ -7,20 +7,20 @@ import webshopLogo from "../images/webshop.svg"
 import { Link } from "react-router-dom"
 import { ProductContext } from "../context/ProductContext"
 import CheckOut from "./CheckOut"
-import CartCount from "./CartCount";
+import CartCount from "./CartCount"
 
 const OurHeader = styled.header`
   width: 100%;
   display: flex;
+
   background: #1a1b1d;
   height: 60px;
   color: white;
-  position:fixed;
-  z-index:1000;
+  position: fixed;
+  z-index: 1000;
   justify-content: space-between;
-  opacity:0.9;
-`;
-
+  opacity: 0.9;
+`
 
 const WebshopLogo = styled.img`
   width: 70px;
@@ -50,8 +50,8 @@ const LogoImgHeader = styled.img`
   padding-left: 20px;
   height: 80px;
   width: 70px;
-  position:relative;
-  top:-10px;
+  position: relative;
+  top: -10px;
 `
 const LogoImgFooter = styled.img`
   margin: 0;
@@ -60,10 +60,10 @@ const LogoImgFooter = styled.img`
 `
 
 const CartImgWrap = styled.div`
- display:flex;
- flex-direction:row;
- justify-content:flex-end;
- width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
 `
 
 const CartImg = styled.img`
@@ -86,47 +86,44 @@ const NamesListItem = styled.li`
 `
 
 const LoaderContainer = styled.div`
-  transition:all 500ms ease-in;
-  opacity: ${props => props.loading || 1};
+  transition: all 500ms ease-in;
+  opacity: ${(props) => props.loading || 1};
 `
 
-
 export default function BaseLayout({ children }) {
-
-  const { toggle, setToggle, cartCount, loader} = useContext(ProductContext);
+  const { toggle, setToggle, cartCount, loader } = useContext(ProductContext)
 
   const toggleMenu = () => {
-    toggle === "-370px" 
-    ? setToggle("0px") 
-    : setToggle("-370px")
+    toggle === "-370px" ? setToggle("0px") : setToggle("-370px")
   }
 
   return (
     <>
-    <LoaderContainer loading={loader}>
-      <OurHeader>
-        <Link to="/">
-          <LogoImgHeader src={logo} />
-        </Link>
-        <CartImgWrap>
-        <CartCount count={cartCount}/>
-        <WebshopLogo src={webshopLogo} />
-        <CartImg src={cart} onClick={toggleMenu} />
-        </CartImgWrap>
-      </OurHeader>
-      <OurMain>{children}</OurMain>
-      <OurFooter>
-        <Link to="/">
-          <LogoImgFooter src={logo} />
-        </Link>
-        <NamesList>
-          <NamesListItem>Vanessa Suthat</NamesListItem>
-          <NamesListItem>Ludvig Dahlstedt</NamesListItem>
-          <NamesListItem>Sofia Khan</NamesListItem>
-          <NamesListItem>Christopher Berge</NamesListItem>
-          <NamesListItem>Martin Axelsson</NamesListItem>
-        </NamesList>
-      </OurFooter>
+      <LoaderContainer loading={loader}>
+        <OurHeader>
+          <Link to="/">
+            <LogoImgHeader src={logo} />
+          </Link>
+          <WebshopLogo src={webshopLogo} />
+
+          <CartImgWrap>
+            <CartCount count={cartCount} />
+            <CartImg src={cart} onClick={toggleMenu} />
+          </CartImgWrap>
+        </OurHeader>
+        <OurMain>{children}</OurMain>
+        <OurFooter>
+          <Link to="/">
+            <LogoImgFooter src={logo} />
+          </Link>
+          <NamesList>
+            <NamesListItem>Vanessa Suthat</NamesListItem>
+            <NamesListItem>Ludvig Dahlstedt</NamesListItem>
+            <NamesListItem>Sofia Khan</NamesListItem>
+            <NamesListItem>Christopher Berge</NamesListItem>
+            <NamesListItem>Martin Axelsson</NamesListItem>
+          </NamesList>
+        </OurFooter>
       </LoaderContainer>
     </>
   )
