@@ -16,7 +16,9 @@ export default function App() {
   let [reviews, setReviews] = useState([])
   let [lsRender, setlsRender] = useState(0)
   let [sum, setSum] = useState(0)
-  const [cartCount, setCartCount] = useState(0)
+  let [cartCount, setCartCount] = useState(0)
+  let [loader, setLoader] = useState(true);
+
 
   return (
     <>

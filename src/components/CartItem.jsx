@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 import styled from "styled-components";
 import {
@@ -60,10 +60,12 @@ const CartButtonContainer = styled.div`
   display: flex;
   height: 50px;
   background: black;
+  cursor:pointer;
 `;
 
 const AddReduce = styled.p`
   padding: 5px;
+  cursor:pointer;
 `;
 
 export default function CartItem({
@@ -72,21 +74,21 @@ export default function CartItem({
   img,
   quantity,
   id,
-  render,
+  renderCart,
   addCount,
 }) {
-  const { cartCount, setCartCount } = useContext(ProductContext);
+  const { cartCount, setCartCount, setlsRender, lsRender } = useContext(ProductContext);
+  let stepValue = useRef(0);
 
   function addMore() {
-    let info = JSON.parse(localStorage.getItem(`product_${id}`));
 
+    let info = JSON.parse(localStorage.getItem(`product_${id}`));
     let updatedLocalStorage = {
       ...info,
       addCount: addCount + 1,
     };
 
     let qty = parseInt(quantity);
-
     addCount < qty
       ? localStorage.setItem(
           `product_${id}`,
@@ -94,37 +96,41 @@ export default function CartItem({
         )
       : console.log(parseInt(quantity));
 
-    !cartCount > 1 ? setCartCount(cartCount - 1) : console.log("count");
+    !cartCount > 1 ? setCartCount(cartCount - 1) : console.log("");
 
-    render();
+    renderCart();
   }
 
   function reduce() {
-    let info = JSON.parse(localStorage.getItem(`product_${id}`));
 
+    let info = JSON.parse(localStorage.getItem(`product_${id}`));
     let updatedLocalStorage = {
       ...info,
       addCount: addCount - 1,
     };
 
-    addCount > 0
+    addCount > 1
       ? localStorage.setItem(
           `product_${id}`,
           JSON.stringify(updatedLocalStorage)
         )
       : console.log(parseInt(quantity));
 
-    if (addCount <= 0) {
+    if (addCount <= 1) {
       deleteItem();
+      setCartCount(cartCount - 1);
+      setlsRender(lsRender + 1);
     }
-    setCartCount(cartCount - 1);
-    render();
+
+
+    renderCart();
   }
 
   function deleteItem() {
     localStorage.removeItem(`product_${id}`);
     setCartCount(cartCount - 1);
-    render();
+    setlsRender(lsRender + 1);
+    renderCart();
   }
   return (
     <>
@@ -138,7 +144,7 @@ export default function CartItem({
           <AddReduce>
             <IoIosAddCircleOutline onClick={addMore} />
           </AddReduce>
-          <Stepper type="number" value={addCount} />
+          <Stepper type="number" ref={stepValue} value={addCount} />
           <AddReduce>
             <IoIosRemoveCircleOutline onClick={reduce} />
           </AddReduce>

@@ -1,24 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ProductContext } from "../context/ProductContext";
 import styled from "styled-components";
 
 const CountButtonDisplay = styled.button`
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   background: red;
   color: white;
   font-weight: bold;
+  position: absolute;
+  right: 70px;
+  top: 15px;
   border: 1px solid white;
   &:hover {
   }
 `;
 
 export default function CartCount() {
-  const { cartCount } = useContext(ProductContext);
+  let { cartCount, setCartCount } = useContext(ProductContext);
+
+  const renderCount = () => {
+    if (cartCount <= 0) {
+      cartCount = 0;
+    }
+    return cartCount;
+  };
+
+  useEffect(() => {
+    setCartCount(parseInt(localStorage.length));
+  }, []);
+
   return (
     <>
-      <CountButtonDisplay>{cartCount}</CountButtonDisplay>
+      <CountButtonDisplay>{renderCount()}</CountButtonDisplay>
     </>
   );
 }

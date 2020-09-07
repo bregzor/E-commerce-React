@@ -8,7 +8,7 @@ export default function Order() {
 
 		const  payload = {
 			name: ":first",
-			products: JSON.parse(x)
+			products: JSON.stringify(x)
 		}
 		
 		fetch("https://mock-data-api.firebaseio.com/e-commerce/orders/group-3.json",{
@@ -20,10 +20,6 @@ export default function Order() {
 			console.log(data.response);
 		});
 	}
-
-	// useEffect(() => {
-	// //	sendOrder();
-	// },[])
 
 	return (
 		<div>

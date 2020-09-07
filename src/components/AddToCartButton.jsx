@@ -15,6 +15,13 @@ const Cartbutton = styled.button`
   cursor: pointer;
   z-index: 1;
   position: ;
+  background:white;
+  transition:all 250ms ease-in;
+
+  &:hover {
+    transition:all 250ms ease-in;
+    background:lightgray;
+  }
 `
 
 export default function AddToCartButton({ id, data }) {
@@ -23,8 +30,7 @@ export default function AddToCartButton({ id, data }) {
   const addItemToLocalStorage = () => {
     localStorage.setItem(`product_${id}`, JSON.stringify(data))
     setlsRender(lsRender + 1)
-    setCartCount(cartCount+1)
-    console.log("data from addtocart", data)
+    setCartCount(cartCount +1)
   }
 
   return <Cartbutton onClick={addItemToLocalStorage}>+</Cartbutton>

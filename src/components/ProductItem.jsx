@@ -16,7 +16,7 @@ const ProductArticle = styled.article`
   border: 0;
   &:hover {
     transition: border 500ms ease-in;
-    border: 1px solid orange;
+    ${'' /* border: 1px solid orange; */}
   }
 `
 

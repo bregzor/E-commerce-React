@@ -47,10 +47,16 @@ const CheckoutBtn = styled.button`
 const CheckOutWrapp = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap:wrap;
   align-items: center;
+  position:fixed;
+  bottom:40px;
+  padding:10px;
+  border-top:1px solid black;
 `
 
 export default function CartList() {
+
   const [cartItems, setCartItems] = useState([])
   const { toggle, lsRender } = useContext(ProductContext)
 
@@ -59,7 +65,6 @@ export default function CartList() {
 
     for (let i = 0; i < localStorage.length; i++) {
       const product = JSON.parse(localStorage.getItem(localStorage.key(i)))
-      // console.log(localStorage.getItem("checkout"));
       AllProducts.push(product)
     }
     setCartItems(AllProducts)
@@ -92,21 +97,20 @@ export default function CartList() {
                 quantity={product.quantity}
                 img={product.img}
                 key={index}
-                render={getAllCartItems}
+                renderCart={getAllCartItems}
                 addCount={product.addCount}
               />
             )
           }
-
-          //<
         })}
         <CheckOutWrapp>
           <Link to={`/CheckOut/`}>
             <CheckoutBtn>Checkout</CheckoutBtn>
           </Link>
           <CheckoutBtn onClick={clearAll}>Clear All</CheckoutBtn>
+          <TotalSum />
         </CheckOutWrapp>
-        <TotalSum />
+
       </Cart>
     </div>
   )
